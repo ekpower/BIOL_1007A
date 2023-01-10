@@ -1,0 +1,15 @@
+---
+title: "BIOL_1007A Webpage"
+author: "Emily K. Power"
+date: "`r Sys.Date()`"
+output: 
+    prettydoc::html_pretty:
+        theme: leonids
+        highlight: github
+---
+
+## Assignments
+
+[Assignment 1](Assignment_1.html)
+
+[Website link](https://amazon.com)

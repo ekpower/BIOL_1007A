@@ -1,0 +1,14 @@
+---
+title: "Assignment 1"
+author: "Emily K. Power"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+git status
+git add -A
+git commit -am "note"
+git push
+
+
+## This is where I can put anything
