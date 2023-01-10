@@ -1,0 +1,87 @@
+---
+title: "Assignment 2"
+author: "Emily K. Power"
+date: "`r Sys.Date()`"
+output: 
+    prettydoc::html_pretty:
+        theme: HPSTR
+        highlight: github
+---
+
+### 1. 
+
+My assignment is dedicated to ![](Images/llp-bio-photo.png)  
+
+### 2.  
+
+Fruits | Vegetables | Meats  
+------------- | ------------- | -------------  
+Mango | Broccoli | Burger 
+Pineapple | Green Bean | Hot Dog  
+Watermelon | Spinach | Salmon 
+Pear | Carrot | Chicken  
+### 3.  
+
+I like to eat *pasta* because there are **so** many dishes you can make with it. If I *had* to eat **only one** meal for the rest of my life, it would *probably* be some variation of **pasta**. I got a **pasta maker** for my birthday last year and I want to start using it *more*.   
+
+### 4.   
+
+#### Types of Dogs
+ * Lab
+   + Black
+   + Brown
+   + Yellow
+ * Terrier
+   + Boston
+   + Yorkshire
+   + Pit bull
+   + etc.
+ * Bulldog
+ * Wiener Dog
+ * Golden retriever
+ * Chihuahua
+ * Poodle
+ * Mutt
+   + Many colors
+
+### 5. 
+
+#### Best Colors
+1. Green
+   + Forest
+   + Olive
+   + Sage
+2. Yellow
+   + Pastel
+   + Mustard
+3. Orange
+   + Dusty like in the Grand Canyon
+4. Blue
+   + Not royal blue, everything else
+5. I don't know
+
+### 6. 
+
+[My favorite online game growing up :)](https://www.poptropica.com/)
+
+### 7.
+
+# My  
+## name  
+### is  
+#### Emily  
+##### Kristina  
+###### Power
+
+### 8.  
+
+Big Word^Little_Word_in_the_sky^  
+Big Word~Small_Word_on_the_ground~
+
+### 9.  
+
+Did you know that $a^{2} +b^{2} = c^{2}$?
+
+### 10.  
+
+`This is the end of my assignment.`
