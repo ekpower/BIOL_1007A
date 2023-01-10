@@ -12,4 +12,4 @@ output:
 
 [Assignment 1](Assignment_1.html)
 
-[Website link](https://amazon.com)
+[Assignment 2](Assignment_2.html)
