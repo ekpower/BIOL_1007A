@@ -40,11 +40,11 @@ z <- c(seq(from=1, to=7), seq(from=8, to=1))
 print(z)
 
 # b. 
-z <- c(rep(x=1, each=1), rep(x=2, each=2), rep(x=3, each=3), rep(x=4, each=4), rep(x=5, each=5))
+z <- rep(1:5, c(1,2,3,4,5))
 print(z)
 
 # c.
-z <- c(rep(x=5, each=1), rep(x=4, each=2), rep(x=3, each=3), rep(x=2, each=4), rep(x=1, each=5))
+z <- rep(seq(from=5, to=1), c(1,2,3,4,5))
 print(z)
 ```
 
