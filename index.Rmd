@@ -10,12 +10,12 @@ output:
 
 ## Daily Assignments
 
-[Assignment 1](Assignment_1.html)
+[Assignment 1](Daily Assignments/Assignment_1.html)
 
-[Assignment 2](Assignment_2.html)
+[Assignment 2](Daily Assignments/Assignment_2.html)
 
-[Assignment 3](Assignment_3.html)
+[Assignment 3](Daily Assignments/Assignment_3.html)
 
 ## Weekly Assignments
 
-[GitHub Webpage Guide](GitHub_Webpage_Guide.html)
+[GitHub Webpage Guide](Weekly Assignments/GitHub_Webpage_Guide.html)
