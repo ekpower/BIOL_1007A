@@ -4,14 +4,18 @@ author: "Emily K. Power"
 date: "`r Sys.Date()`"
 output: 
     prettydoc::html_pretty:
-        theme: leonids
+        theme: hpstr
         highlight: github
 ---
 
-## Assignments
+## Daily Assignments
 
 [Assignment 1](Assignment_1.html)
 
 [Assignment 2](Assignment_2.html)
 
 [Assignment 3](Assignment_3.html)
+
+## Weekly Assignments
+
+[GitHub Webpage Guide](GitHub_Webpage_Guide.html)
