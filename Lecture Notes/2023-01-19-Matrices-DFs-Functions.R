@@ -48,3 +48,90 @@ str(dataSub)
 
 ## sort a data frame by values
 orderedIris <- iris[order(iris$Petal.Length),]
+
+
+# FUNCTIONS in R
+
+## everything in R is a function
+sum(3,2)  # sum
+3+2  # + sign is a function
+sd
+
+## User-defined functions
+# functionName <- function(argX=defaultX, argY=defaultY){
+  ## curly bracket starts the body of the function
+    ## lines of code
+    ## notes
+    ## create local variables - only 'visible' to R WITHIN the function
+  ## always end with return(z) (like print())
+# }
+
+myFunc <- function(a=3, b=4){
+  z <- a + b
+  return(z)
+}
+myFunc()  # runs default arguments
+myFunc(a=100, b=3.4)  # runs new values
+
+## example of a bad function:
+myFuncBad <- function(a=3){
+  z <- a + b
+  return(z)
+}
+myFuncBad()  # error: object B not found
+
+## how to use with no default values:
+myFuncNull <- function(a=NULL, b=NULL){
+  z <- a + b
+  return(z)
+}
+myFuncBad()  # returns 'integer 0'
+
+
+## Multiple return statements
+
+########################################################################
+# FUNCTION: HardyWeinberg
+# input: all allele frequency p (0,1)
+# output: p and the frequencies of 3 genotypes AA AB BB
+#-----------------------------------------------------------------------
+HardyWeinberg <- function(p = runif(1)){
+  if(p > 1.0 | p < 0.0){
+    return("Function failure: p must be between 0 and 1")
+  }               ## | means 'or', {} means 'then'
+  q <- 1 - p
+  fAA <- p^2      ## 'frequency of AA allele is p^2
+  fAB <- 2*p*q
+  fBB <- q^2
+  vecOut <- signif(c(p=p, AA=fAA, AB=fAB, BB=fBB), digits=3)
+  return(vecOut)  ## signif outputs significant figures
+}
+########################################################################
+
+HardyWeinberg()
+freqs <- HardyWeinberg()
+freqs
+HardyWeinberg(p=3)  ## prints return message
+
+
+## Create a complex default value
+########################################################################
+# FUNCTION: fitLinear2
+# fits simple regression line
+# input: numeric vector (p) of predictor (x) and response (y)
+# outputs: slope and p-value
+#-----------------------------------------------------------------------
+fitLinear2 <- function(p=NULL){
+  if(is.null(p)){
+    p <- list(x=runif(20), y=runif(20))
+  }       # 'if p is null, then we'll make a variable p'
+  myMod <- lm(p$x~p$y)
+  myOut <- c(slope = summary(myMod)$coefficients[2,1], 
+             pValue = summary(myMod)$coefficients[2,4])
+  plot(x=p$x, y=p$y)  # quick plot to check output
+  return(myOut)
+}
+########################################################################
+fitLinear2()
+myPars <- list(x=1:10, y=runif(10))
+fitLinear2(p=myPars)

@@ -54,18 +54,25 @@ typeof(my_list_vector)
 
 
 #### 3. Create an empty data frame with two variables (= columns) and 26 observations (= rows) below:
+```{r}
+df <- data.frame(matrix(ncol = 2, nrow = 26))
+df
+```
+
 
   * call the first column/variable `my_unifs` and fill it with 26 random uniform values from 0 to 10
 ```{r}
 my_unifs <- runif(26, min=0, max=10)
 my_unifs_DF <- data.frame(my_unifs)
+df[,1] <- my_unifs_DF
 ```
 
 
   * call the second variable `my_letters` and fill it with 26 capital letters in random order.
 ```{r}
 my_letters <- sample(LETTERS[1:26])
-my_letters
+my_letters_DF <- data.frame(my_letters)
+df[,2] <- my_letters_DF
 ```
 
 
@@ -77,11 +84,15 @@ my_unifs_DF[sample(nrow(my_unifs_DF), 4),1] <- NA
 
   * for the first variable, write a single line of R code to identify which rows have the missing values.
 ```{r}
-
+is.na(my_unifs_DF)
 ```
   
   
   * re-order the entire data frame to arrange the second variable in alphabetical order.
+```{r}
+
+```
+
   
   * calculate the column mean for the first variable.
   

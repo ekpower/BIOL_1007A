@@ -372,27 +372,27 @@ lower-case letters in random order.</li>
 </ul>
 <pre class="r"><code>my_matrix &lt;- matrix(data = runif(16), nrow=4)
 my_matrix</code></pre>
-<pre><code>##           [,1]      [,2]      [,3]      [,4]
-## [1,] 0.3687681 0.7595912 0.5217400 0.9036021
-## [2,] 0.7441859 0.4479820 0.5413841 0.9964182
-## [3,] 0.8807238 0.3086169 0.2860651 0.1630908
-## [4,] 0.2112003 0.4432963 0.9170314 0.8540083</code></pre>
+<pre><code>##           [,1]      [,2]       [,3]       [,4]
+## [1,] 0.6407415 0.2007161 0.80032869 0.59670439
+## [2,] 0.3595321 0.1428107 0.02558520 0.08391991
+## [3,] 0.5209873 0.6395069 0.71475704 0.74084749
+## [4,] 0.1753170 0.2585198 0.06368907 0.81978230</code></pre>
 <pre class="r"><code>my_logical &lt;- rnorm(100)
 my_logical &lt;- my_logical &gt; 0
 my_logical</code></pre>
-<pre><code>##   [1]  TRUE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE  TRUE FALSE  TRUE  TRUE
-##  [13]  TRUE FALSE FALSE  TRUE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE  TRUE
-##  [25]  TRUE FALSE  TRUE  TRUE  TRUE FALSE FALSE FALSE  TRUE  TRUE  TRUE FALSE
-##  [37] FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE  TRUE  TRUE FALSE  TRUE FALSE
-##  [49]  TRUE  TRUE  TRUE  TRUE FALSE FALSE  TRUE  TRUE FALSE FALSE FALSE FALSE
-##  [61] FALSE FALSE  TRUE  TRUE FALSE  TRUE FALSE FALSE FALSE  TRUE FALSE FALSE
-##  [73]  TRUE  TRUE FALSE FALSE FALSE  TRUE  TRUE FALSE  TRUE  TRUE FALSE  TRUE
-##  [85] FALSE  TRUE  TRUE  TRUE FALSE  TRUE FALSE FALSE  TRUE FALSE FALSE  TRUE
-##  [97]  TRUE FALSE  TRUE  TRUE</code></pre>
+<pre><code>##   [1]  TRUE  TRUE  TRUE FALSE FALSE  TRUE FALSE  TRUE FALSE  TRUE FALSE  TRUE
+##  [13]  TRUE  TRUE  TRUE FALSE FALSE FALSE  TRUE  TRUE FALSE  TRUE  TRUE FALSE
+##  [25]  TRUE  TRUE FALSE FALSE FALSE  TRUE FALSE  TRUE  TRUE  TRUE FALSE  TRUE
+##  [37]  TRUE  TRUE FALSE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE FALSE  TRUE
+##  [49] FALSE FALSE  TRUE FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE FALSE
+##  [61] FALSE FALSE FALSE  TRUE FALSE FALSE FALSE  TRUE  TRUE FALSE  TRUE FALSE
+##  [73] FALSE  TRUE FALSE FALSE  TRUE  TRUE  TRUE FALSE FALSE FALSE  TRUE FALSE
+##  [85] FALSE FALSE FALSE  TRUE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE
+##  [97] FALSE  TRUE FALSE  TRUE</code></pre>
 <pre class="r"><code>my_letters &lt;- sample(letters[1:26])
 my_letters</code></pre>
-<pre><code>##  [1] &quot;g&quot; &quot;l&quot; &quot;u&quot; &quot;f&quot; &quot;d&quot; &quot;o&quot; &quot;a&quot; &quot;c&quot; &quot;p&quot; &quot;v&quot; &quot;w&quot; &quot;t&quot; &quot;i&quot; &quot;n&quot; &quot;j&quot; &quot;b&quot; &quot;h&quot; &quot;z&quot; &quot;s&quot;
-## [20] &quot;e&quot; &quot;q&quot; &quot;y&quot; &quot;r&quot; &quot;k&quot; &quot;x&quot; &quot;m&quot;</code></pre>
+<pre><code>##  [1] &quot;e&quot; &quot;d&quot; &quot;n&quot; &quot;y&quot; &quot;j&quot; &quot;u&quot; &quot;z&quot; &quot;t&quot; &quot;s&quot; &quot;w&quot; &quot;r&quot; &quot;x&quot; &quot;p&quot; &quot;l&quot; &quot;k&quot; &quot;v&quot; &quot;c&quot; &quot;q&quot; &quot;m&quot;
+## [20] &quot;o&quot; &quot;g&quot; &quot;h&quot; &quot;b&quot; &quot;a&quot; &quot;i&quot; &quot;f&quot;</code></pre>
 <p>Then, complete the following steps:</p>
 <ul>
 <li>create a new list, which has the element[2,2] from the matrix, the
@@ -402,13 +402,13 @@ letters vector.</li>
 <pre class="r"><code>my_list &lt;- list(my_matrix[2,2], my_logical[2], my_letters[2])
 my_list</code></pre>
 <pre><code>## [[1]]
-## [1] 0.447982
+## [1] 0.1428107
 ## 
 ## [[2]]
-## [1] FALSE
+## [1] TRUE
 ## 
 ## [[3]]
-## [1] &quot;l&quot;</code></pre>
+## [1] &quot;d&quot;</code></pre>
 <ul>
 <li>use the <code>typeof()</code> function to confirm the underlying
 data types of each component in this list</li>
@@ -426,13 +426,13 @@ atomic vector with the <code>c()</code> function.</li>
 <pre class="r"><code>my_list_vector &lt;- c(my_list)
 my_list_vector</code></pre>
 <pre><code>## [[1]]
-## [1] 0.447982
+## [1] 0.1428107
 ## 
 ## [[2]]
-## [1] FALSE
+## [1] TRUE
 ## 
 ## [[3]]
-## [1] &quot;l&quot;</code></pre>
+## [1] &quot;d&quot;</code></pre>
 <ul>
 <li>what is the data type of this vector?</li>
 </ul>
@@ -442,20 +442,48 @@ my_list_vector</code></pre>
 <div id="create-an-empty-data-frame-with-two-variables-columns-and-26-observations-rows-below" class="section level4">
 <h4>3. Create an empty data frame with two variables (= columns) and 26
 observations (= rows) below:</h4>
+<pre class="r"><code>df &lt;- data.frame(matrix(ncol = 2, nrow = 26))
+df</code></pre>
+<pre><code>##    X1 X2
+## 1  NA NA
+## 2  NA NA
+## 3  NA NA
+## 4  NA NA
+## 5  NA NA
+## 6  NA NA
+## 7  NA NA
+## 8  NA NA
+## 9  NA NA
+## 10 NA NA
+## 11 NA NA
+## 12 NA NA
+## 13 NA NA
+## 14 NA NA
+## 15 NA NA
+## 16 NA NA
+## 17 NA NA
+## 18 NA NA
+## 19 NA NA
+## 20 NA NA
+## 21 NA NA
+## 22 NA NA
+## 23 NA NA
+## 24 NA NA
+## 25 NA NA
+## 26 NA NA</code></pre>
 <ul>
 <li>call the first column/variable <code>my_unifs</code> and fill it
 with 26 random uniform values from 0 to 10</li>
 </ul>
 <pre class="r"><code>my_unifs &lt;- runif(26, min=0, max=10)
-my_unifs_DF &lt;- data.frame(my_unifs)</code></pre>
+my_unifs_DF &lt;- data.frame(my_unifs)
+df[,1] &lt;- my_unifs_DF</code></pre>
 <ul>
 <li>call the second variable <code>my_letters</code> and fill it with 26
 capital letters in random order.</li>
 </ul>
 <pre class="r"><code>my_letters &lt;- sample(LETTERS[1:26])
-my_letters</code></pre>
-<pre><code>##  [1] &quot;S&quot; &quot;Y&quot; &quot;F&quot; &quot;X&quot; &quot;O&quot; &quot;Z&quot; &quot;E&quot; &quot;L&quot; &quot;W&quot; &quot;C&quot; &quot;M&quot; &quot;K&quot; &quot;D&quot; &quot;U&quot; &quot;G&quot; &quot;P&quot; &quot;J&quot; &quot;V&quot; &quot;A&quot;
-## [20] &quot;I&quot; &quot;Q&quot; &quot;N&quot; &quot;H&quot; &quot;T&quot; &quot;R&quot; &quot;B&quot;</code></pre>
+df[,2] &lt;- my_letters</code></pre>
 <ul>
 <li>for the first variable, use a single line of code in R to select 4
 random rows and replace the numerical values in those rows with
@@ -463,8 +491,38 @@ random rows and replace the numerical values in those rows with
 </ul>
 <pre class="r"><code>my_unifs_DF[sample(nrow(my_unifs_DF), 4),1] &lt;- NA</code></pre>
 <ul>
-<li><p>for the first variable, write a single line of R code to identify
-which rows have the missing values.</p></li>
+<li>for the first variable, write a single line of R code to identify
+which rows have the missing values.</li>
+</ul>
+<pre class="r"><code>is.na(my_unifs_DF)</code></pre>
+<pre><code>##       my_unifs
+##  [1,]    FALSE
+##  [2,]    FALSE
+##  [3,]    FALSE
+##  [4,]    FALSE
+##  [5,]    FALSE
+##  [6,]    FALSE
+##  [7,]    FALSE
+##  [8,]    FALSE
+##  [9,]     TRUE
+## [10,]    FALSE
+## [11,]    FALSE
+## [12,]    FALSE
+## [13,]    FALSE
+## [14,]    FALSE
+## [15,]    FALSE
+## [16,]    FALSE
+## [17,]     TRUE
+## [18,]    FALSE
+## [19,]    FALSE
+## [20,]    FALSE
+## [21,]    FALSE
+## [22,]    FALSE
+## [23,]     TRUE
+## [24,]     TRUE
+## [25,]    FALSE
+## [26,]    FALSE</code></pre>
+<ul>
 <li><p>re-order the entire data frame to arrange the second variable in
 alphabetical order.</p></li>
 <li><p>calculate the column mean for the first variable.</p></li>
