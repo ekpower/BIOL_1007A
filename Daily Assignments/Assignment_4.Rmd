@@ -1,0 +1,64 @@
+---
+title: "Assignment 4"
+author: "Emily K. Power"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+## Working with matrices, lists, and data frames
+
+1. Assign to the variable `n_dims` a single random integer between 3 and 10.
+```{r}
+set.seed(111)
+n_dims <- sample(3:10, size=1)
+print(n_dims)
+```
+  * Create a vector of consecutive integers from `1` to `n_dims^2^`.
+```{r}
+n_dims <- 1:n_dims^2
+```
+  * Use the sample function to randomly reshuffle these values.
+```{r}
+n_dims <- sample(n_dims)
+```
+  * create a square matrix with these elements.
+```{r}
+m <- matrix(data=n_dims, nrow=8)
+```
+  * print out the matrix.
+```{r}
+print(m)
+```
+  * find a function in r to transpose the matrix.
+  * print it out again and note how it has changed.
+```{r}
+t(m)
+## matrix was flipped
+```
+  * calculate the sum and the mean of the elements in the first row and then the last row.
+```{r}
+mDataframe <- data.frame(m)
+rowSums(mDataframe[1,])
+rowMeans(mDataframe[1,])
+
+rowSums(mDataframe[8,])
+rowMeans(mDataframe[8,])
+```
+
+  * set your code up so you can re-run it to create a matrix of a different size by only changing the `n_dims` value
+```{r}
+n_dims <- sample(3:10, size=1)
+n_dims2 <- 1:n_dims^2
+n_dims2 <- sample(n_dims2)
+m <- matrix(data=n_dims2, nrow=n_dims)
+print(m)
+t(m)
+
+mDataframe <- data.frame(m)
+rowSums(mDataframe[1,])
+rowMeans(mDataframe[1,])
+
+rowSums(mDataframe[n_dims,])
+rowMeans(mDataframe[n_dims,])
+```
+
