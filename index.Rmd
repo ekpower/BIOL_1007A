@@ -31,6 +31,8 @@ output:
 
 [Assignment 5](Daily Assignments/Assignment_5.html)
 
+[Assignment 6](Daily Assignments/Assignment_6.html)
+
 ## Weekly Assignments
 
 [GitHub Webpage Guide](Weekly Assignments/Weekly_Assignment_1.html)

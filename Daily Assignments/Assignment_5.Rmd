@@ -78,7 +78,7 @@ df
 
   * for the first variable, use a single line of code in R to select 4 random rows and replace the numerical values in those rows with `NA`.
 ```{r}
-df[sample(nrow(df), 4),1] <- NA
+df[sample(1:nrow(df), 4),1] <- NA
 df
 ```
 
@@ -103,7 +103,7 @@ mean(df$my_unifs, na.rm = TRUE)
 
   * rename the second column ‘my_LETTERS’
 ```{r}
-names(alphebetized_df)[names(alphebetized_df) == "my_letters"] <- "my_LETTERS"
+names(alphebetized_df)[2] <- "my_LETTERS"
 alphebetized_df
 ```
 
