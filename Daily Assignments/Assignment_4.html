@@ -11,7 +11,7 @@
 
 <meta name="author" content="Emily K. Power" />
 
-<meta name="date" content="2023-01-22" />
+<meta name="date" content="2023-01-23" />
 
 <title>Assignment 4</title>
 
@@ -352,7 +352,7 @@ display: none;
 
 <h1 class="title toc-ignore">Assignment 4</h1>
 <h4 class="author">Emily K. Power</h4>
-<h4 class="date">2023-01-22</h4>
+<h4 class="date">2023-01-23</h4>
 
 </div>
 
@@ -371,23 +371,23 @@ print(n_dims)</code></pre>
 <li>Create a vector of consecutive integers from <code>1</code> to
 <code>n_dims^2^</code>.</li>
 </ul>
-<pre class="r"><code>n_dims &lt;- 1:n_dims^2
-n_dims</code></pre>
+<pre class="r"><code>vec &lt;- 1:n_dims^2
+vec</code></pre>
 <pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25
 ## [26] 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50
 ## [51] 51 52 53 54 55 56 57 58 59 60 61 62 63 64</code></pre>
 <ul>
 <li>Use the sample function to randomly reshuffle these values.</li>
 </ul>
-<pre class="r"><code>n_dims &lt;- sample(n_dims)
-n_dims</code></pre>
+<pre class="r"><code>random_vec &lt;- sample(vec)
+random_vec</code></pre>
 <pre><code>##  [1] 59 20 19 47 25 64  5 35  8 26 49 45 10 36 61 56 14 55 60 24  7 21 15  1  9
 ## [26] 46 57 44 51 28 39  4 31  6 30 58 43 29 32 33 40 52 18 38 13 41 23 16 22 37
 ## [51] 34 48 62 53 50 54 11 27 42  3 17 63 12  2</code></pre>
 <ul>
 <li>create a square matrix with these elements.</li>
 </ul>
-<pre class="r"><code>m &lt;- matrix(data=n_dims, nrow=8)</code></pre>
+<pre class="r"><code>m &lt;- matrix(data=random_vec, nrow=n_dims)</code></pre>
 <ul>
 <li>print out the matrix.</li>
 </ul>
@@ -438,9 +438,9 @@ rowSums(mDataframe[1,])</code></pre>
 different size by only changing the <code>n_dims</code> value</li>
 </ul>
 <pre class="r"><code>n_dims &lt;- sample(3:10, size=1)
-n_dims2 &lt;- 1:n_dims^2
-n_dims2 &lt;- sample(n_dims2)
-m &lt;- matrix(data=n_dims2, nrow=n_dims)
+vec &lt;- 1:n_dims^2
+random_vec &lt;- sample(vec)
+m &lt;- matrix(data=random_vec, nrow=n_dims)
 print(m)</code></pre>
 <pre><code>##       [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10]
 ##  [1,]   94   95   83   90   25   34   10   39   99    30
@@ -472,7 +472,7 @@ rowSums(mDataframe[1,])</code></pre>
 <pre class="r"><code>rowMeans(mDataframe[1,])</code></pre>
 <pre><code>##    1 
 ## 59.9</code></pre>
-<pre class="r"><code>rowSums(mDataframe[n_dims,])</code></pre>
+<pre class="r"><code>rowSums(mDataframe[n_dims,])  # use n_dims so code is reproducible</code></pre>
 <pre><code>##  10 
 ## 563</code></pre>
 <pre class="r"><code>rowMeans(mDataframe[n_dims,])</code></pre>

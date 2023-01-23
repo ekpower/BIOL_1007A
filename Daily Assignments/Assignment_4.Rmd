@@ -15,17 +15,17 @@ print(n_dims)
 ```
   * Create a vector of consecutive integers from `1` to `n_dims^2^`.
 ```{r}
-n_dims <- 1:n_dims^2
-n_dims
+vec <- 1:n_dims^2
+vec
 ```
   * Use the sample function to randomly reshuffle these values.
 ```{r}
-n_dims <- sample(n_dims)
-n_dims
+random_vec <- sample(vec)
+random_vec
 ```
   * create a square matrix with these elements.
 ```{r}
-m <- matrix(data=n_dims, nrow=8)
+m <- matrix(data=random_vec, nrow=n_dims)
 ```
   * print out the matrix.
 ```{r}
@@ -50,9 +50,9 @@ rowMeans(mDataframe[8,])
   * set your code up so you can re-run it to create a matrix of a different size by only changing the `n_dims` value
 ```{r}
 n_dims <- sample(3:10, size=1)
-n_dims2 <- 1:n_dims^2
-n_dims2 <- sample(n_dims2)
-m <- matrix(data=n_dims2, nrow=n_dims)
+vec <- 1:n_dims^2
+random_vec <- sample(vec)
+m <- matrix(data=random_vec, nrow=n_dims)
 print(m)
 t(m)
 
@@ -60,7 +60,7 @@ mDataframe <- data.frame(m)
 rowSums(mDataframe[1,])
 rowMeans(mDataframe[1,])
 
-rowSums(mDataframe[n_dims,])
+rowSums(mDataframe[n_dims,])  # use n_dims so code is reproducible
 rowMeans(mDataframe[n_dims,])
 ```
 
