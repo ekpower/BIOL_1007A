@@ -22,4 +22,6 @@ output:
 
 ## Weekly Assignments
 
-[GitHub Webpage Guide](Weekly Assignments/GitHub_Webpage_Guide.html)
+[GitHub Webpage Guide](Weekly Assignments/Weekly Assignment_1.html)
+
+[Creating Functions](Weekly Assignments/Weekly Assignment_2.html)
