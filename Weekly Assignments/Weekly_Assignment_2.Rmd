@@ -14,17 +14,16 @@ output: html_document
 ```{r}
 ########################################################################
 # FUNCTION: new_function
-# fits simple regression line
-# input: numeric vector (p) of predictor (x) and response (y)
+# returns a data frame with 2 columns (named “Type” and “Value”) and 50 rows/observations
+# input: mean and standard deviation
 # outputs: "Type" and "Value"
 #-----------------------------------------------------------------------
 new_function <- function(means=c(10, 45), sds=c(1.5, 2)){
-  Type <- rep(c("Control", "Treatment"), each=25)
-  Value <- c(rnorm(n=25, mean=means[1], sd=sds[1]), rnorm(n=25, mean=means[2], sd=sds[2]))
-  df <- data.frame(Type, Value, stringsAsFactors = FALSE)
+  Type <- rep(c("Control", "Treatment"), each=25)  # create "Type" column with 25 "Control" and 25 "Treatment" variables
+  Value <- c(rnorm(n=25, mean=means[1], sd=sds[1]), rnorm(n=25, mean=means[2], sd=sds[2]))  # generate random normally distributed values with set means and standard deviations
+  df <- data.frame(Type, Value, stringsAsFactors = FALSE)  # generate data frame
   return(df)
 }
-########################################################################
 
 new_function()
 ```
@@ -32,7 +31,33 @@ new_function()
 
 
 2. Save your new function’s output as a variable, and view the first 6 rows of the data frame.
+```{r}
+output <- new_function()
+head(output)
+```
+
 
 3. Let’s say you would like to know whether there is a statistically significant difference in “Value” (response variable y) depending on “Type” (explanatory variable x). Type `?aov` in the console to determine how to run an analysis of variance (ANOVA) on your simulated data. The formula is written as `yVar~xVar` with yVar as the column name of your response variable and xVar as the column name of your explanatory variable. Write a line of code that displays a summary of your ANOVA.
+```{r}
+ANOVA <- aov(Value~Type, data = output)
+ANOVA
+summary(ANOVA)
+```
+
 
 4. Finally create a function that uses a data frame as its input and returns only the p-value of an ANOVA summary table (feel free to use Google/Stack Overflow). Write your code in such a way that you can use any simulated data set with two columns (i.e. the output of your first function) as your ANOVA function’s argument.
+```{r}
+########################################################################
+# FUNCTION: ANOVA_function
+# returns the p-value of an ANOVA summary table
+# input: a data frame
+# outputs: p-value
+#-----------------------------------------------------------------------
+ANOVA_function <- function(df=ANOVA){
+  p_value <- summary(df)[[1]][[5]]  # pull p value from ANOVA summary data frame
+  return(p_value)
+}
+
+ANOVA_function()
+```
+

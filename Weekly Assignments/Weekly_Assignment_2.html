@@ -377,87 +377,130 @@ challenge) or broken up into multiple code blocks.</li>
 </ol>
 <pre class="r"><code>########################################################################
 # FUNCTION: new_function
-# fits simple regression line
-# input: numeric vector (p) of predictor (x) and response (y)
+# returns a data frame with 2 columns (named “Type” and “Value”) and 50 rows/observations
+# input: mean and standard deviation
 # outputs: &quot;Type&quot; and &quot;Value&quot;
 #-----------------------------------------------------------------------
 new_function &lt;- function(means=c(10, 45), sds=c(1.5, 2)){
-  Type &lt;- rep(c(&quot;Control&quot;, &quot;Treatment&quot;), each=25)
-  Value &lt;- c(rnorm(n=25, mean=means[1], sd=sds[1]), rnorm(n=25, mean=means[2], sd=sds[2]))
-  df &lt;- data.frame(Type, Value, stringsAsFactors = FALSE)
+  Type &lt;- rep(c(&quot;Control&quot;, &quot;Treatment&quot;), each=25)  # create &quot;Type&quot; column with 25 &quot;Control&quot; and 25 &quot;Treatment&quot; variables
+  Value &lt;- c(rnorm(n=25, mean=means[1], sd=sds[1]), rnorm(n=25, mean=means[2], sd=sds[2]))  # generate random normally distributed values with set means and standard deviations
+  df &lt;- data.frame(Type, Value, stringsAsFactors = FALSE)  # generate data frame
   return(df)
 }
-########################################################################
 
 new_function()</code></pre>
 <pre><code>##         Type     Value
-## 1    Control  9.614245
-## 2    Control  8.578778
-## 3    Control  8.701032
-## 4    Control  9.288450
-## 5    Control 12.071042
-## 6    Control  9.457410
-## 7    Control  9.685185
-## 8    Control 13.372765
-## 9    Control 11.744924
-## 10   Control  8.984398
-## 11   Control  6.984857
-## 12   Control  9.604508
-## 13   Control 11.205574
-## 14   Control  8.972630
-## 15   Control 11.235412
-## 16   Control  7.857653
-## 17   Control 10.257522
-## 18   Control  9.286491
-## 19   Control 12.126912
-## 20   Control 12.585347
-## 21   Control 13.010523
-## 22   Control  8.292108
-## 23   Control  8.677604
-## 24   Control  8.855297
-## 25   Control  8.939757
-## 26 Treatment 45.477697
-## 27 Treatment 45.037025
-## 28 Treatment 43.358166
-## 29 Treatment 46.057013
-## 30 Treatment 47.545604
-## 31 Treatment 45.063389
-## 32 Treatment 46.150127
-## 33 Treatment 44.946775
-## 34 Treatment 47.174112
-## 35 Treatment 41.713303
-## 36 Treatment 42.974933
-## 37 Treatment 46.029963
-## 38 Treatment 42.232529
-## 39 Treatment 46.983282
-## 40 Treatment 43.608313
-## 41 Treatment 43.997925
-## 42 Treatment 49.059657
-## 43 Treatment 44.492418
-## 44 Treatment 46.981060
-## 45 Treatment 43.143978
-## 46 Treatment 45.286939
-## 47 Treatment 46.022246
-## 48 Treatment 45.338192
-## 49 Treatment 45.657795
-## 50 Treatment 44.367416</code></pre>
+## 1    Control  8.940955
+## 2    Control 11.626279
+## 3    Control 11.936187
+## 4    Control 10.867262
+## 5    Control 12.254220
+## 6    Control 11.677287
+## 7    Control  7.224645
+## 8    Control 10.593101
+## 9    Control 12.800602
+## 10   Control 12.198658
+## 11   Control  9.541111
+## 12   Control  8.686452
+## 13   Control  8.900877
+## 14   Control  8.918621
+## 15   Control  8.852989
+## 16   Control 11.621711
+## 17   Control 10.526154
+## 18   Control  9.701782
+## 19   Control  8.169772
+## 20   Control 11.014768
+## 21   Control  9.405860
+## 22   Control 11.588897
+## 23   Control 12.339794
+## 24   Control  6.840257
+## 25   Control 11.523113
+## 26 Treatment 45.239159
+## 27 Treatment 46.503223
+## 28 Treatment 46.458577
+## 29 Treatment 44.326684
+## 30 Treatment 46.809986
+## 31 Treatment 43.233902
+## 32 Treatment 43.325286
+## 33 Treatment 44.209506
+## 34 Treatment 43.820579
+## 35 Treatment 45.319510
+## 36 Treatment 43.575507
+## 37 Treatment 46.718316
+## 38 Treatment 43.393894
+## 39 Treatment 45.958280
+## 40 Treatment 44.230127
+## 41 Treatment 46.547319
+## 42 Treatment 46.091784
+## 43 Treatment 44.904245
+## 44 Treatment 45.231672
+## 45 Treatment 47.581375
+## 46 Treatment 46.161923
+## 47 Treatment 46.979027
+## 48 Treatment 46.479407
+## 49 Treatment 42.790871
+## 50 Treatment 42.760441</code></pre>
 <ol start="2" style="list-style-type: decimal">
-<li><p>Save your new function’s output as a variable, and view the first
-6 rows of the data frame.</p></li>
-<li><p>Let’s say you would like to know whether there is a statistically
+<li>Save your new function’s output as a variable, and view the first 6
+rows of the data frame.</li>
+</ol>
+<pre class="r"><code>output &lt;- new_function()
+head(output)</code></pre>
+<pre><code>##      Type     Value
+## 1 Control  8.593776
+## 2 Control  9.248356
+## 3 Control  7.679027
+## 4 Control  9.297881
+## 5 Control  9.520379
+## 6 Control 11.862357</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>Let’s say you would like to know whether there is a statistically
 significant difference in “Value” (response variable y) depending on
 “Type” (explanatory variable x). Type <code>?aov</code> in the console
 to determine how to run an analysis of variance (ANOVA) on your
 simulated data. The formula is written as <code>yVar~xVar</code> with
 yVar as the column name of your response variable and xVar as the column
 name of your explanatory variable. Write a line of code that displays a
-summary of your ANOVA.</p></li>
-<li><p>Finally create a function that uses a data frame as its input and
+summary of your ANOVA.</li>
+</ol>
+<pre class="r"><code>ANOVA &lt;- aov(Value~Type, data = output)
+ANOVA</code></pre>
+<pre><code>## Call:
+##    aov(formula = Value ~ Type, data = output)
+## 
+## Terms:
+##                      Type Residuals
+## Sum of Squares  15437.488   225.159
+## Deg. of Freedom         1        48
+## 
+## Residual standard error: 2.165827
+## Estimated effects may be unbalanced</code></pre>
+<pre class="r"><code>summary(ANOVA)</code></pre>
+<pre><code>##             Df Sum Sq Mean Sq F value Pr(&gt;F)    
+## Type         1  15437   15437    3291 &lt;2e-16 ***
+## Residuals   48    225       5                   
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li>Finally create a function that uses a data frame as its input and
 returns only the p-value of an ANOVA summary table (feel free to use
 Google/Stack Overflow). Write your code in such a way that you can use
 any simulated data set with two columns (i.e. the output of your first
-function) as your ANOVA function’s argument.</p></li>
+function) as your ANOVA function’s argument.</li>
 </ol>
+<pre class="r"><code>########################################################################
+# FUNCTION: ANOVA_function
+# returns the p-value of an ANOVA summary table
+# input: a data frame
+# outputs: p-value
+#-----------------------------------------------------------------------
+ANOVA_function &lt;- function(df=ANOVA){
+  p_value &lt;- summary(df)[[1]][[5]]  # pull p value from ANOVA summary data frame
+  return(p_value)
+}
+
+ANOVA_function()</code></pre>
+<pre><code>## [1] 6.999093e-46           NA</code></pre>
 </div>
 
 
