@@ -11,7 +11,7 @@
 
 <meta name="author" content="Emily K. Power" />
 
-<meta name="date" content="2023-01-19" />
+<meta name="date" content="2023-01-22" />
 
 <title>Assignment 5</title>
 
@@ -352,7 +352,7 @@ display: none;
 
 <h1 class="title toc-ignore">Assignment 5</h1>
 <h4 class="author">Emily K. Power</h4>
-<h4 class="date">2023-01-19</h4>
+<h4 class="date">2023-01-22</h4>
 
 </div>
 
@@ -372,27 +372,27 @@ lower-case letters in random order.</li>
 </ul>
 <pre class="r"><code>my_matrix &lt;- matrix(data = runif(16), nrow=4)
 my_matrix</code></pre>
-<pre><code>##           [,1]      [,2]       [,3]       [,4]
-## [1,] 0.6407415 0.2007161 0.80032869 0.59670439
-## [2,] 0.3595321 0.1428107 0.02558520 0.08391991
-## [3,] 0.5209873 0.6395069 0.71475704 0.74084749
-## [4,] 0.1753170 0.2585198 0.06368907 0.81978230</code></pre>
+<pre><code>##             [,1]      [,2]      [,3]      [,4]
+## [1,] 0.851446366 0.6209827 0.6069225 0.1345556
+## [2,] 0.566051048 0.8760546 0.1801594 0.1849988
+## [3,] 0.003464139 0.9983536 0.2229763 0.6811814
+## [4,] 0.503877452 0.2867821 0.8998847 0.4003060</code></pre>
 <pre class="r"><code>my_logical &lt;- rnorm(100)
 my_logical &lt;- my_logical &gt; 0
 my_logical</code></pre>
-<pre><code>##   [1]  TRUE  TRUE  TRUE FALSE FALSE  TRUE FALSE  TRUE FALSE  TRUE FALSE  TRUE
-##  [13]  TRUE  TRUE  TRUE FALSE FALSE FALSE  TRUE  TRUE FALSE  TRUE  TRUE FALSE
-##  [25]  TRUE  TRUE FALSE FALSE FALSE  TRUE FALSE  TRUE  TRUE  TRUE FALSE  TRUE
-##  [37]  TRUE  TRUE FALSE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE FALSE  TRUE
-##  [49] FALSE FALSE  TRUE FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE FALSE
-##  [61] FALSE FALSE FALSE  TRUE FALSE FALSE FALSE  TRUE  TRUE FALSE  TRUE FALSE
-##  [73] FALSE  TRUE FALSE FALSE  TRUE  TRUE  TRUE FALSE FALSE FALSE  TRUE FALSE
-##  [85] FALSE FALSE FALSE  TRUE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE
-##  [97] FALSE  TRUE FALSE  TRUE</code></pre>
+<pre><code>##   [1]  TRUE FALSE FALSE  TRUE  TRUE  TRUE  TRUE FALSE  TRUE FALSE FALSE  TRUE
+##  [13] FALSE FALSE  TRUE FALSE  TRUE  TRUE  TRUE FALSE  TRUE FALSE  TRUE FALSE
+##  [25] FALSE FALSE  TRUE  TRUE FALSE FALSE  TRUE  TRUE  TRUE FALSE FALSE  TRUE
+##  [37] FALSE  TRUE FALSE  TRUE FALSE FALSE FALSE  TRUE  TRUE FALSE FALSE  TRUE
+##  [49] FALSE FALSE FALSE  TRUE FALSE  TRUE FALSE  TRUE FALSE  TRUE FALSE FALSE
+##  [61] FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE  TRUE FALSE  TRUE
+##  [73] FALSE FALSE FALSE FALSE  TRUE FALSE FALSE  TRUE  TRUE FALSE  TRUE  TRUE
+##  [85]  TRUE  TRUE FALSE  TRUE FALSE  TRUE FALSE  TRUE  TRUE  TRUE FALSE  TRUE
+##  [97]  TRUE  TRUE FALSE  TRUE</code></pre>
 <pre class="r"><code>my_letters &lt;- sample(letters[1:26])
 my_letters</code></pre>
-<pre><code>##  [1] &quot;e&quot; &quot;d&quot; &quot;n&quot; &quot;y&quot; &quot;j&quot; &quot;u&quot; &quot;z&quot; &quot;t&quot; &quot;s&quot; &quot;w&quot; &quot;r&quot; &quot;x&quot; &quot;p&quot; &quot;l&quot; &quot;k&quot; &quot;v&quot; &quot;c&quot; &quot;q&quot; &quot;m&quot;
-## [20] &quot;o&quot; &quot;g&quot; &quot;h&quot; &quot;b&quot; &quot;a&quot; &quot;i&quot; &quot;f&quot;</code></pre>
+<pre><code>##  [1] &quot;o&quot; &quot;y&quot; &quot;g&quot; &quot;f&quot; &quot;i&quot; &quot;h&quot; &quot;a&quot; &quot;k&quot; &quot;m&quot; &quot;q&quot; &quot;n&quot; &quot;j&quot; &quot;s&quot; &quot;z&quot; &quot;w&quot; &quot;t&quot; &quot;l&quot; &quot;b&quot; &quot;x&quot;
+## [20] &quot;e&quot; &quot;p&quot; &quot;v&quot; &quot;d&quot; &quot;r&quot; &quot;c&quot; &quot;u&quot;</code></pre>
 <p>Then, complete the following steps:</p>
 <ul>
 <li>create a new list, which has the element[2,2] from the matrix, the
@@ -402,13 +402,13 @@ letters vector.</li>
 <pre class="r"><code>my_list &lt;- list(my_matrix[2,2], my_logical[2], my_letters[2])
 my_list</code></pre>
 <pre><code>## [[1]]
-## [1] 0.1428107
+## [1] 0.8760546
 ## 
 ## [[2]]
-## [1] TRUE
+## [1] FALSE
 ## 
 ## [[3]]
-## [1] &quot;d&quot;</code></pre>
+## [1] &quot;y&quot;</code></pre>
 <ul>
 <li>use the <code>typeof()</code> function to confirm the underlying
 data types of each component in this list</li>
@@ -426,13 +426,13 @@ atomic vector with the <code>c()</code> function.</li>
 <pre class="r"><code>my_list_vector &lt;- c(my_list)
 my_list_vector</code></pre>
 <pre><code>## [[1]]
-## [1] 0.1428107
+## [1] 0.8760546
 ## 
 ## [[2]]
-## [1] TRUE
+## [1] FALSE
 ## 
 ## [[3]]
-## [1] &quot;d&quot;</code></pre>
+## [1] &quot;y&quot;</code></pre>
 <ul>
 <li>what is the data type of this vector?</li>
 </ul>
@@ -476,58 +476,156 @@ df</code></pre>
 with 26 random uniform values from 0 to 10</li>
 </ul>
 <pre class="r"><code>my_unifs &lt;- runif(26, min=0, max=10)
-my_unifs_DF &lt;- data.frame(my_unifs)
-df[,1] &lt;- my_unifs_DF</code></pre>
+my_unifs_DF &lt;- data.frame(my_unifs)</code></pre>
 <ul>
 <li>call the second variable <code>my_letters</code> and fill it with 26
 capital letters in random order.</li>
 </ul>
 <pre class="r"><code>my_letters &lt;- sample(LETTERS[1:26])
-df[,2] &lt;- my_letters</code></pre>
+my_letters_DF &lt;- data.frame(my_letters)
+df &lt;- data.frame(my_unifs_DF, my_letters_DF)
+df</code></pre>
+<pre><code>##     my_unifs my_letters
+## 1  6.8544678          Z
+## 2  3.7743234          M
+## 3  9.8738738          A
+## 4  7.3849224          O
+## 5  2.5744392          L
+## 6  2.2773694          K
+## 7  1.2134816          H
+## 8  2.9692608          W
+## 9  6.9383310          Q
+## 10 8.3804269          X
+## 11 9.9383976          U
+## 12 9.6984162          V
+## 13 4.1021465          N
+## 14 8.3787897          F
+## 15 9.5179229          D
+## 16 3.2077924          R
+## 17 3.2936780          T
+## 18 0.3973251          J
+## 19 5.9461770          B
+## 20 8.9800960          E
+## 21 3.9843339          Y
+## 22 7.9001787          I
+## 23 0.7373262          G
+## 24 5.1414197          C
+## 25 4.4286801          S
+## 26 8.1266466          P</code></pre>
 <ul>
 <li>for the first variable, use a single line of code in R to select 4
 random rows and replace the numerical values in those rows with
 <code>NA</code>.</li>
 </ul>
-<pre class="r"><code>my_unifs_DF[sample(nrow(my_unifs_DF), 4),1] &lt;- NA</code></pre>
+<pre class="r"><code>df[sample(nrow(df), 4),1] &lt;- NA
+df</code></pre>
+<pre><code>##     my_unifs my_letters
+## 1  6.8544678          Z
+## 2         NA          M
+## 3  9.8738738          A
+## 4  7.3849224          O
+## 5  2.5744392          L
+## 6         NA          K
+## 7  1.2134816          H
+## 8  2.9692608          W
+## 9  6.9383310          Q
+## 10        NA          X
+## 11        NA          U
+## 12 9.6984162          V
+## 13 4.1021465          N
+## 14 8.3787897          F
+## 15 9.5179229          D
+## 16 3.2077924          R
+## 17 3.2936780          T
+## 18 0.3973251          J
+## 19 5.9461770          B
+## 20 8.9800960          E
+## 21 3.9843339          Y
+## 22 7.9001787          I
+## 23 0.7373262          G
+## 24 5.1414197          C
+## 25 4.4286801          S
+## 26 8.1266466          P</code></pre>
 <ul>
 <li>for the first variable, write a single line of R code to identify
 which rows have the missing values.</li>
 </ul>
-<pre class="r"><code>is.na(my_unifs_DF)</code></pre>
-<pre><code>##       my_unifs
-##  [1,]    FALSE
-##  [2,]    FALSE
-##  [3,]    FALSE
-##  [4,]    FALSE
-##  [5,]    FALSE
-##  [6,]    FALSE
-##  [7,]    FALSE
-##  [8,]    FALSE
-##  [9,]     TRUE
-## [10,]    FALSE
-## [11,]    FALSE
-## [12,]    FALSE
-## [13,]    FALSE
-## [14,]    FALSE
-## [15,]    FALSE
-## [16,]    FALSE
-## [17,]     TRUE
-## [18,]    FALSE
-## [19,]    FALSE
-## [20,]    FALSE
-## [21,]    FALSE
-## [22,]    FALSE
-## [23,]     TRUE
-## [24,]     TRUE
-## [25,]    FALSE
-## [26,]    FALSE</code></pre>
+<pre class="r"><code>df[is.na(df$my_unifs),]</code></pre>
+<pre><code>##    my_unifs my_letters
+## 2        NA          M
+## 6        NA          K
+## 10       NA          X
+## 11       NA          U</code></pre>
 <ul>
-<li><p>re-order the entire data frame to arrange the second variable in
-alphabetical order.</p></li>
-<li><p>calculate the column mean for the first variable.</p></li>
-<li><p>rename the second column ‘my_LETTERS’</p></li>
+<li>re-order the entire data frame to arrange the second variable in
+alphabetical order.</li>
 </ul>
+<pre class="r"><code>alphebetized_df &lt;- df[order(df$my_letters), ]
+alphebetized_df</code></pre>
+<pre><code>##     my_unifs my_letters
+## 3  9.8738738          A
+## 19 5.9461770          B
+## 24 5.1414197          C
+## 15 9.5179229          D
+## 20 8.9800960          E
+## 14 8.3787897          F
+## 23 0.7373262          G
+## 7  1.2134816          H
+## 22 7.9001787          I
+## 18 0.3973251          J
+## 6         NA          K
+## 5  2.5744392          L
+## 2         NA          M
+## 13 4.1021465          N
+## 4  7.3849224          O
+## 26 8.1266466          P
+## 9  6.9383310          Q
+## 16 3.2077924          R
+## 25 4.4286801          S
+## 17 3.2936780          T
+## 11        NA          U
+## 12 9.6984162          V
+## 8  2.9692608          W
+## 10        NA          X
+## 21 3.9843339          Y
+## 1  6.8544678          Z</code></pre>
+<ul>
+<li>calculate the column mean for the first variable.</li>
+</ul>
+<pre class="r"><code>mean(df$my_unifs, na.rm = TRUE) </code></pre>
+<pre><code>## [1] 5.529532</code></pre>
+<ul>
+<li>rename the second column ‘my_LETTERS’</li>
+</ul>
+<pre class="r"><code>names(alphebetized_df)[names(alphebetized_df) == &quot;my_letters&quot;] &lt;- &quot;my_LETTERS&quot;
+alphebetized_df</code></pre>
+<pre><code>##     my_unifs my_LETTERS
+## 3  9.8738738          A
+## 19 5.9461770          B
+## 24 5.1414197          C
+## 15 9.5179229          D
+## 20 8.9800960          E
+## 14 8.3787897          F
+## 23 0.7373262          G
+## 7  1.2134816          H
+## 22 7.9001787          I
+## 18 0.3973251          J
+## 6         NA          K
+## 5  2.5744392          L
+## 2         NA          M
+## 13 4.1021465          N
+## 4  7.3849224          O
+## 26 8.1266466          P
+## 9  6.9383310          Q
+## 16 3.2077924          R
+## 25 4.4286801          S
+## 17 3.2936780          T
+## 11        NA          U
+## 12 9.6984162          V
+## 8  2.9692608          W
+## 10        NA          X
+## 21 3.9843339          Y
+## 1  6.8544678          Z</code></pre>
 </div>
 </div>
 

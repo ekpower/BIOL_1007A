@@ -64,7 +64,6 @@ df
 ```{r}
 my_unifs <- runif(26, min=0, max=10)
 my_unifs_DF <- data.frame(my_unifs)
-df[,1] <- my_unifs_DF
 ```
 
 
@@ -72,28 +71,39 @@ df[,1] <- my_unifs_DF
 ```{r}
 my_letters <- sample(LETTERS[1:26])
 my_letters_DF <- data.frame(my_letters)
-df[,2] <- my_letters_DF
+df <- data.frame(my_unifs_DF, my_letters_DF)
+df
 ```
 
 
   * for the first variable, use a single line of code in R to select 4 random rows and replace the numerical values in those rows with `NA`.
 ```{r}
-my_unifs_DF[sample(nrow(my_unifs_DF), 4),1] <- NA
+df[sample(nrow(df), 4),1] <- NA
+df
 ```
 
 
   * for the first variable, write a single line of R code to identify which rows have the missing values.
 ```{r}
-is.na(my_unifs_DF)
+df[is.na(df$my_unifs),]
 ```
   
   
   * re-order the entire data frame to arrange the second variable in alphabetical order.
 ```{r}
-
+alphebetized_df <- df[order(df$my_letters), ]
+alphebetized_df
 ```
 
   
   * calculate the column mean for the first variable.
-  
+```{r}
+mean(df$my_unifs, na.rm = TRUE) 
+```
+
   * rename the second column ‘my_LETTERS’
+```{r}
+names(alphebetized_df)[names(alphebetized_df) == "my_letters"] <- "my_LETTERS"
+alphebetized_df
+```
+

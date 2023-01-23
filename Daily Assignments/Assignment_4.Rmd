@@ -16,10 +16,12 @@ print(n_dims)
   * Create a vector of consecutive integers from `1` to `n_dims^2^`.
 ```{r}
 n_dims <- 1:n_dims^2
+n_dims
 ```
   * Use the sample function to randomly reshuffle these values.
 ```{r}
 n_dims <- sample(n_dims)
+n_dims
 ```
   * create a square matrix with these elements.
 ```{r}
