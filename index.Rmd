@@ -7,6 +7,17 @@ output:
         theme: hpstr
         highlight: github
 ---
+![](Images/webpage_photo.jpg) 
+
+
+![](Images/Page_Break_Graphic_D2460FF10315A.png)
+
+### Dear Reader,  
+  Hi! My name is Emily (she/her) and I am a senior feb at Middlebury College majoring in Conservation Biology and minoring in Psychology. This J term (2023), I'm taking a class called *Reproducible Biology in R* where I'm learning the basics of reproducible coding in R and RStudio that I can apply in my future biology courses and research. This webpage serves as a repository for my assignments and a potential resource for other Biology students out there!   
+
+
+![](Images/Page_Break_Graphic_D2460FF10315A.png)
+
 
 ## Daily Assignments
 
