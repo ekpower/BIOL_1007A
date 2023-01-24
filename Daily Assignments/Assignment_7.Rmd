@@ -1,0 +1,85 @@
+---
+title: "Assignment 7"
+author: "Emily K. Power"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+## Data wrangling and plotting  
+
+1. Using the built-in `starwars` data set in the `dplyr` package, create a new tibble with the following modifications:
+
+  * It only includes the species that have more than 1 individual represented in the data set. (hint: first use `dplyr` to summarize the number of individuals per species in the data frame; then create a vector/tibble of those names; subset the species that are included in that vector)
+
+  * It only includes the columns that are not of type list (hint: use glimpse to check)
+```{r}
+library(dplyr)
+
+species_counts <- starwars %>% 
+  count(species)
+glimpse(species_counts)
+
+species_names <- filter(species_counts, n>1)
+species_names
+
+filtered_starwars <- filter(starwars, species %in% c("Droid", "Gungan", "Human", "Kaminoan", "Mirialan", "Twi'lek", "Wookiee", "Zabrak"))
+head(filtered_starwars)
+```
+
+
+2. Clean your data set: only include observations/rows that do not have an `NA` in the height column. Then, use `dplyr` to print a summary table showing the mean, median, and standard deviation of height for **each species.**
+```{r}
+clean_starwars <- filtered_starwars[complete.cases(filtered_starwars[,2]),]
+
+starwars_heights <- clean_starwars %>%
+  group_by(species) %>%
+  summarize(meanHeight = mean(height), medianHeight = median(height), sdHeight = sd(height))
+starwars_heights
+```
+
+
+3. Create a box plot figure that shows the variation in heights among Star Wars species. Do the values in your summary table line up with the plot? Code so that each box plot (Species) is be filled with a different color. Change your axes labels so that species is capitalized and height is capitalized and shows units (cm). Use the theme_minimal option. Then look into the `annotate` or `geom_text` functions and add the text “p=1.2E-0.5” to the top right corner.  
+
+*For an extra (optional) challenge:* overlay the data points onto the box plots (hint: look into `geom_jitter` or `geom_point`). See if you can change the color of the points, depending on the gender or sex variables.
+
+```{r}
+library(ggplot2)
+library(viridis)
+cols <- viridis(11, option = "viridis")
+
+p1 <- ggplot(data=clean_starwars, aes(x=species, y=height, fill=species)) +
+  geom_boxplot() +
+  scale_fill_manual(values=cols) +
+  geom_jitter(data = clean_starwars, position = "jitter", aes(color=sex))
+```
+
+
+
+4. Using the same or a different built-in data set, create at least one additional (and different kind of) plot. Experiment with different arguments, features, and colors.
+```{r}
+homeworld_counts <- starwars %>% 
+  count(homeworld)
+glimpse(homeworld_counts)
+
+homeworld_names <- filter(homeworld_counts, n>1)
+homeworld_names
+
+filtered_starwars2 <- filter(starwars, homeworld %in% c("Alderaan", "Corellia", "Coruscant", "Kamino", "Kashyyyk", "Mirial", "Naboo", "Ryloth", "Tatooine"))
+head(filtered_starwars2)
+anyNA(filtered_starwars2[,10])
+
+clean_starwars2 <- filtered_starwars2[complete.cases(filtered_starwars2[,8]),]  # filter NAs from 'sex' column
+
+p2 <- ggplot(clean_starwars2, aes(x="homeworld", y=sex, fill=sex)) +
+  geom_bar(stat="identity", width=1) +
+  coord_polar("y", start=0) +
+  facet_grid(.~homeworld)
+```
+
+
+5. Finally, create a multi-panel figure with the graphs you created.
+```{r}
+library(patchwork)
+p1 / p2
+```
+
