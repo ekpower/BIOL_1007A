@@ -8,3 +8,7 @@
 # These functions read in a data set:
   # read.table(file="path/to/data.csv", header=TRUE, sep = ",")
   # read.csv(file="data.csv", header=TRUE)
+
+# Use RDS object when only working in R
+  # saveRDS()
+  # readRDS()

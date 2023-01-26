@@ -42,3 +42,21 @@ output:
 [GitHub Webpage Guide](Weekly Assignments/Weekly_Assignment_1.html)
 
 [Creating Functions](Weekly Assignments/Weekly_Assignment_2.html)
+
+## Lecture Notes
+
+[Lecture 1](.html)
+
+[Lecture 2](.html)
+
+[Lecture 3](.html)
+
+[Lecture 4](.html)
+
+[Lecture 5](.html)
+
+[Lecture 6](.html)
+
+[Lecture 7: ggplot2](Lecture Notes/2023-01-24-ggplot.html)
+
+[Lecture 8: Loading in Data](Lecture Notes/2023-01-26-loading-data.html)

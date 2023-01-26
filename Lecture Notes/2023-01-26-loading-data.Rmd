@@ -1,0 +1,78 @@
+---
+title: "Lecture 8: Loading in Data"
+author: "Emily K. Power"
+date: "26 January 2023"
+output: 
+    prettydoc::html_pretty:
+        theme: hpstr
+        highlight: github
+---
+
+### Create and save a data set:
+```{r}
+# write.table(x=varName, file="outputFileName.csv", header=TRUE, sep=",")
+```
+
+
+### These functions read in a data set:
+```{r}
+# read.table(file="path/to/data.csv", header=TRUE, sep = ",")
+# read.csv(file="data.csv", header=TRUE)
+```
+
+
+### Use RDS object when only working in R
+  * helpful with large datasets
+```{r}
+# saveRDS(my_data, file="FileName.RDS")
+# readRDS("FileName.RDS")
+# p <- readRDS("FileName.RDS")
+```
+
+### Long vs. Wide data formats
+  * **wide format**: contains values that do not repeat in the ID column
+  * **long format**: contains values that DO repeat in the ID column
+```{r}
+library(tidyverse)
+glimpse(billboard)  # wide format, many columns
+b1 <- billboard %>%
+  pivot_longer(
+    cols = starts_with("wk"), # cols specifies which columns you want to make 'longer'
+    names_to = "Week", # names_to creates name of new column which will contain the header names
+    values_to = "Rank", # values_to specifies name of new column which will contain the values
+    values_drop_na = TRUE  # removes any rows where the value = NA
+  )
+
+head(b1)
+```
+
+### pivot_wider
+  * best for making occupancy matrix
+```{r}
+glimpse(fish_encounters)
+
+fish_encounters %>%
+  pivot_wider(names_from = station,  # which column you want to turn into multiple columns
+              values_from = seen)  # which column contains the values for new column cells
+
+fish_encounters %>%
+  pivot_wider(names_from = station,
+              values_from = seen, 
+              values_fill = 0)
+  # good format for occupancy matrix
+```
+
+### Dryad: makes research data freely reusable, citeable, and discoverable
+```{r}
+# type file.choose() into console to get path to data
+dryadData <- read.table(file="/Users/emilypower/Desktop/BIOL_1007A/Data/NE_amphibians.csv", header=TRUE, sep=",")
+glimpse(dryadData)
+head(dryadData)
+table(dryadData$species)  # allows you to see different groups of character column
+summary(dryadData$mean.hydro)
+
+str(dryadData$species)
+dryadData$species <- factor (dryadData$species, labels=c("Spotted Salamander", "Wood Frog"))  # creating 'labels' to use for the plot
+str(dryadData$species)
+```
+
