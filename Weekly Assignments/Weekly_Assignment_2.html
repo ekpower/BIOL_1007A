@@ -11,7 +11,7 @@
 
 <meta name="author" content="Emily K. Power" />
 
-<meta name="date" content="2023-01-23" />
+<meta name="date" content="2023-01-26" />
 
 <title>Weekly Assignment 2</title>
 
@@ -352,7 +352,7 @@ display: none;
 
 <h1 class="title toc-ignore">Weekly Assignment 2</h1>
 <h4 class="author">Emily K. Power</h4>
-<h4 class="date">2023-01-23</h4>
+<h4 class="date">2023-01-26</h4>
 
 </div>
 
@@ -381,78 +381,26 @@ challenge) or broken up into multiple code blocks.</li>
 # input: mean and standard deviation
 # outputs: &quot;Type&quot; and &quot;Value&quot;
 #-----------------------------------------------------------------------
-new_function &lt;- function(means=c(10, 45), sds=c(1.5, 2)){
-  Type &lt;- rep(c(&quot;Control&quot;, &quot;Treatment&quot;), each=25)  # create &quot;Type&quot; column with 25 &quot;Control&quot; and 25 &quot;Treatment&quot; variables
-  Value &lt;- c(rnorm(n=25, mean=means[1], sd=sds[1]), rnorm(n=25, mean=means[2], sd=sds[2]))  # generate random normally distributed values with set means and standard deviations
-  df &lt;- data.frame(Type, Value, stringsAsFactors = FALSE)  # generate data frame
-  return(df)
-}
-
-new_function()</code></pre>
-<pre><code>##         Type     Value
-## 1    Control  8.940955
-## 2    Control 11.626279
-## 3    Control 11.936187
-## 4    Control 10.867262
-## 5    Control 12.254220
-## 6    Control 11.677287
-## 7    Control  7.224645
-## 8    Control 10.593101
-## 9    Control 12.800602
-## 10   Control 12.198658
-## 11   Control  9.541111
-## 12   Control  8.686452
-## 13   Control  8.900877
-## 14   Control  8.918621
-## 15   Control  8.852989
-## 16   Control 11.621711
-## 17   Control 10.526154
-## 18   Control  9.701782
-## 19   Control  8.169772
-## 20   Control 11.014768
-## 21   Control  9.405860
-## 22   Control 11.588897
-## 23   Control 12.339794
-## 24   Control  6.840257
-## 25   Control 11.523113
-## 26 Treatment 45.239159
-## 27 Treatment 46.503223
-## 28 Treatment 46.458577
-## 29 Treatment 44.326684
-## 30 Treatment 46.809986
-## 31 Treatment 43.233902
-## 32 Treatment 43.325286
-## 33 Treatment 44.209506
-## 34 Treatment 43.820579
-## 35 Treatment 45.319510
-## 36 Treatment 43.575507
-## 37 Treatment 46.718316
-## 38 Treatment 43.393894
-## 39 Treatment 45.958280
-## 40 Treatment 44.230127
-## 41 Treatment 46.547319
-## 42 Treatment 46.091784
-## 43 Treatment 44.904245
-## 44 Treatment 45.231672
-## 45 Treatment 47.581375
-## 46 Treatment 46.161923
-## 47 Treatment 46.979027
-## 48 Treatment 46.479407
-## 49 Treatment 42.790871
-## 50 Treatment 42.760441</code></pre>
+new_function &lt;- function(means=c(10, 45), sds=c(1.5, 2), n=25){
+  Type &lt;- rep(c(&quot;Control&quot;, &quot;Treatment&quot;), each=n)  # create &quot;Type&quot; column with n &quot;Control&quot; and n &quot;Treatment&quot; variables
+  Value &lt;- c(rnorm(n, mean=means[1], sd=sds[1]), rnorm(n, mean=means[2], sd=sds[2]))  # generate random normally distributed values with set means and standard deviations
+  df &lt;- data.frame(Type, Value)  # generate data frame
+  return(df)  # returns data frame
+}</code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li>Save your new function’s output as a variable, and view the first 6
 rows of the data frame.</li>
 </ol>
-<pre class="r"><code>output &lt;- new_function()
-head(output)</code></pre>
+<pre class="r"><code>set.seed(123)  # guarantees that same random values are produced each time code is run
+output &lt;- new_function()  # saves function as variable
+head(output)  # prints first 6 rows of data</code></pre>
 <pre><code>##      Type     Value
-## 1 Control  8.593776
-## 2 Control  9.248356
-## 3 Control  7.679027
-## 4 Control  9.297881
-## 5 Control  9.520379
-## 6 Control 11.862357</code></pre>
+## 1 Control  9.159287
+## 2 Control  9.654734
+## 3 Control 12.338062
+## 4 Control 10.105763
+## 5 Control 10.193932
+## 6 Control 12.572597</code></pre>
 <ol start="3" style="list-style-type: decimal">
 <li>Let’s say you would like to know whether there is a statistically
 significant difference in “Value” (response variable y) depending on
@@ -463,22 +411,11 @@ yVar as the column name of your response variable and xVar as the column
 name of your explanatory variable. Write a line of code that displays a
 summary of your ANOVA.</li>
 </ol>
-<pre class="r"><code>ANOVA &lt;- aov(Value~Type, data = output)
-ANOVA</code></pre>
-<pre><code>## Call:
-##    aov(formula = Value ~ Type, data = output)
-## 
-## Terms:
-##                      Type Residuals
-## Sum of Squares  15437.488   225.159
-## Deg. of Freedom         1        48
-## 
-## Residual standard error: 2.165827
-## Estimated effects may be unbalanced</code></pre>
-<pre class="r"><code>summary(ANOVA)</code></pre>
+<pre class="r"><code>test &lt;- aov(Value~Type, data = output)  # aov() function fits analysis of variance model by a call to 1m for each stratum
+summary(test)  # prints test summary</code></pre>
 <pre><code>##             Df Sum Sq Mean Sq F value Pr(&gt;F)    
-## Type         1  15437   15437    3291 &lt;2e-16 ***
-## Residuals   48    225       5                   
+## Type         1  15536   15536    5760 &lt;2e-16 ***
+## Residuals   48    129       3                   
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <ol start="4" style="list-style-type: decimal">
@@ -494,13 +431,17 @@ function) as your ANOVA function’s argument.</li>
 # input: a data frame
 # outputs: p-value
 #-----------------------------------------------------------------------
-ANOVA_function &lt;- function(df=ANOVA){
-  p_value &lt;- summary(df)[[1]][[5]]  # pull p value from ANOVA summary data frame
-  return(p_value)
-}
-
-ANOVA_function()</code></pre>
-<pre><code>## [1] 6.999093e-46           NA</code></pre>
+ANOVA_function &lt;- function(df=NULL){
+  test &lt;- aov(Value ~ Type, data=df)  # same as before
+  test_summary &lt;- summary(test)  # makes test summary
+  p_value &lt;- test_summary[[1]][[&quot;Pr(&gt;F)&quot;]][1]  # pulls p value from test summary data frame
+  return(p_value)  # returns p value
+}</code></pre>
+<pre class="r"><code>ANOVA_function(df=output)</code></pre>
+<pre><code>## [1] 1.183614e-51</code></pre>
+<pre class="r"><code>## you can put your simulate data function in you p-value function
+ANOVA_function(new_function())</code></pre>
+<pre><code>## [1] 7.541268e-53</code></pre>
 </div>
 
 

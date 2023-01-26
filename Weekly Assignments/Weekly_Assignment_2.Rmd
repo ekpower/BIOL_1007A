@@ -18,30 +18,28 @@ output: html_document
 # input: mean and standard deviation
 # outputs: "Type" and "Value"
 #-----------------------------------------------------------------------
-new_function <- function(means=c(10, 45), sds=c(1.5, 2)){
-  Type <- rep(c("Control", "Treatment"), each=25)  # create "Type" column with 25 "Control" and 25 "Treatment" variables
-  Value <- c(rnorm(n=25, mean=means[1], sd=sds[1]), rnorm(n=25, mean=means[2], sd=sds[2]))  # generate random normally distributed values with set means and standard deviations
-  df <- data.frame(Type, Value, stringsAsFactors = FALSE)  # generate data frame
-  return(df)
+new_function <- function(means=c(10, 45), sds=c(1.5, 2), n=25){
+  Type <- rep(c("Control", "Treatment"), each=n)  # create "Type" column with n "Control" and n "Treatment" variables
+  Value <- c(rnorm(n, mean=means[1], sd=sds[1]), rnorm(n, mean=means[2], sd=sds[2]))  # generate random normally distributed values with set means and standard deviations
+  df <- data.frame(Type, Value)  # generate data frame
+  return(df)  # returns data frame
 }
-
-new_function()
 ```
 
 
 
 2. Save your new function’s output as a variable, and view the first 6 rows of the data frame.
 ```{r}
-output <- new_function()
-head(output)
+set.seed(123)  # guarantees that same random values are produced each time code is run
+output <- new_function()  # saves function as variable
+head(output)  # prints first 6 rows of data
 ```
 
 
 3. Let’s say you would like to know whether there is a statistically significant difference in “Value” (response variable y) depending on “Type” (explanatory variable x). Type `?aov` in the console to determine how to run an analysis of variance (ANOVA) on your simulated data. The formula is written as `yVar~xVar` with yVar as the column name of your response variable and xVar as the column name of your explanatory variable. Write a line of code that displays a summary of your ANOVA.
 ```{r}
-ANOVA <- aov(Value~Type, data = output)
-ANOVA
-summary(ANOVA)
+test <- aov(Value~Type, data = output)  # aov() function fits analysis of variance model by a call to 1m for each stratum
+summary(test)  # prints test summary
 ```
 
 
@@ -53,11 +51,17 @@ summary(ANOVA)
 # input: a data frame
 # outputs: p-value
 #-----------------------------------------------------------------------
-ANOVA_function <- function(df=ANOVA){
-  p_value <- summary(df)[[1]][[5]]  # pull p value from ANOVA summary data frame
-  return(p_value)
+ANOVA_function <- function(df=NULL){
+  test <- aov(Value ~ Type, data=df)  # same as before
+  test_summary <- summary(test)  # makes test summary
+  p_value <- test_summary[[1]][["Pr(>F)"]][1]  # pulls p value from test summary data frame
+  return(p_value)  # returns p value
 }
+```
+```{r}
+ANOVA_function(df=output)
 
-ANOVA_function()
+## you can put your simulate data function in you p-value function
+ANOVA_function(new_function())
 ```
 
