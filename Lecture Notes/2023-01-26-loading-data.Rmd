@@ -34,6 +34,7 @@ output:
   * **long format**: contains values that DO repeat in the ID column
 ```{r}
 library(tidyverse)
+library(dplyr)
 glimpse(billboard)  # wide format, many columns
 b1 <- billboard %>%
   pivot_longer(
