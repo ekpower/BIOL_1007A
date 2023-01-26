@@ -57,6 +57,10 @@ p1 <- ggplot(data=clean_starwars, aes(x=species, y=height, fill=species)) +
 
 4. Using the same or a different built-in data set, create at least one additional (and different kind of) plot. Experiment with different arguments, features, and colors.
 ```{r}
+species_petalLength <- filter(iris)
+
+
+
 homeworld_counts <- starwars %>% 
   count(homeworld)
 glimpse(homeworld_counts)
