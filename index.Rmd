@@ -45,6 +45,8 @@ output:
 
 [Using Publicly Available Data](Weekly Assignments/Weekly_Assignment_3.html)
 
+![](/Users/emilypower/Desktop/BIOL_1007A/Images/long-page-break.png)
+
 ## Lecture Notes
 
 [Lecture 1: Introduction](https://docs.google.com/document/d/1gbHUGECIPIO6MnY-c9FWCvZtydE56ikvY341kDyctP0/edit)
