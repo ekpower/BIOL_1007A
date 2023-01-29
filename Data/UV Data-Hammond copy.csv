@@ -1,0 +1,44 @@
+﻿Subject ID,Age,Gender,Eye Color,Ethnicity,Race,Glasses/Contacts,MPOD (30-min),UV Threshold,UV_Threshold_μW
+UVG001,17,F,Dark Brown,NH,Bl,N,0.55,0.8,8
+UVG002,22,F,Light Grey,NH,W,N,0.75,0.5,5
+UVG003,21,M,Medium Brown,NH,W,N,1.01,0.7,7
+UVG004,21,F,Medium Green,NH,W,Y (glass),0.38,2,20
+UVG005,21,F,Medium Brown,NH,As,N,0.69,0.65,6.5
+UVG006,20,F,Light Green,NH,W,Y (contacts),0.24,1.15,11.5
+UVG007,20,M,Medium Grey,NH,W,Y (glass),0.32,0.35,3.5
+UVG008,22,M,Dark Brown,NH,As,N,0.55,0.6,6
+UVG009,21,M,Dark Hazel,NH,W,Y (contacts),0.3,3.45,34.5
+UVG010,19,F,Light Green,NH,W,Y (contacts),0.45,3.85,38.5
+UVG011,18,F,Dark Brown,NH,As,Y (glass),0.8,1.15,11.5
+UVG012,18,F,Dark Brown,NH,Bl,N,0,1.35,13.5
+UVG013,20,M,Medium Brown,NH,W,N,0.48,0.85,8.5
+UVG014,18,F,Dark Brown,NH,Bl,Y (glass),0.19,0.55,5.5
+UVG015,19,F,Medium Brown,H,Lat,Y (glass),0.4,1.95,19.5
+UVG016,19,M,Dark brown,NH,As,Y (glass),1.05,0.55,5.5
+UVG017,18,F,Dark grey,NH,W,Y (glass),0.59,0.3,3
+UVG018,21,F,Light green,NH,W,Y (glass),0.59,1.15,11.5
+UVG019,18,M,Dark hazel,NH,W,Y (glass),0.57,0.4,4
+UVG020,18,F,Medium brown,NH,W,Y (glass),0.55,0.6,6
+UVG021,18,F,Light Grey,NH,W,N,0.91,0.5,5
+UVG022,18,F,Dark Brown,NH,As /In,Y (glass),0.43,0.65,6.5
+UVG023,18,F,Light Blue,NH,W,Y (contacts),0.4,3.05,30.5
+UVG024,18,F,Dark Brown,NH,W,N,0.3,0.35,3.5
+UVG025,18,F,Medium hazel,NH,W,Y (glass),0.21,3,30
+UVG026,18,F,Light green,NH,W,Y (glass),0.59,0.7,7
+UVG027,18,F,Medium blue,NH,W,N,0.78,0.8,8
+UVG028,18,M,Light Grey,NH,W,Y (glass),0.88,0.9,9
+UVG029,18,M,Medium Blue,NH,W,N,0.64,1.15,11.5
+UVG030,18,M,Medium brown,NH,ME,Y (glass),0.72,0.25,2.5
+UVG031,18,M,Light green,NH,W,N,0.3,0.25,2.5
+UVG032,18,F,light grey,NH,W,N,0.44,0.7,7
+UVG033,19,F,dark hazel,NH,W,Y (glass),0.28,1.2,12
+UVG034,18,M,medium brown,H,W,Y (glass),0.66,0.2,2
+UVG035,28,M,Dark brown,NH,As,Y (glass),0.57,,0
+UVG036,19,M,Dark brown,NH,W,Y (glass),0.29,0.1,1
+UVG037,20,F,Medium Blue,NH,W,N,0.76,2.7,27
+UVG038,19,M,Medium Green,NH,W,N,0.46,0.5,5
+UVG039,21,F,Medium Blue,NH,W,Y (contacts),0.59,4.3,43
+UVG040,18,F,Dark grey,NH,W,N,0.29,0.1,1
+UVG041,18,M,Dark green,Mixed,"1/2 White, 1/4 Arab, 1/4 Mexican",N,0.59,0.65,6.5
+UVG042,19,F,Medium Hazel,NH,W,Y (contacts),0.38,0.5,5
+UVG043,20,M,Dark blue,NH,W,N,0.4,0.3,3

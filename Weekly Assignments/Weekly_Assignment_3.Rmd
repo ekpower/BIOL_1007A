@@ -1,0 +1,37 @@
+---
+title: "Weekly Assignment 3"
+author: "Emily K. Power"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+## Using publicly available data  
+1. Go to [Dryad](https://datadryad.org/search) to choose a published paper and data set and reconstruct your own figure. Code a `ggplot` graph that looks as close to the published figure as you can.  
+  * *My data were gathered from this [Dryad page](https://doi.org/10.5061/dryad.hg000c2)*
+  * *Here's the link to the [original article](https://doi.org/10.1371/journal.pone.0199940)*
+
+**This is the figure I am attempting to replicate:**
+![](/Users/emilypower/Desktop/BIOL_1007A/Images/UV_graph.png){width=30%}
+
+```{r}
+library(dplyr)
+library(ggplot2)
+library(ggthemes)
+UV_data <- read.table(file="/Users/emilypower/Desktop/BIOL_1007A/Data/UV Data-Hammond copy.csv", header=TRUE, sep=",")
+glimpse(UV_data)
+
+clean_UV <- UV_data[complete.cases(UV_data[,9]),]  # get rid of UV threshold NA values
+
+UV_hist <- ggplot(clean_UV, aes(x=UV_Threshold_μW)) +  # gather data
+  geom_histogram(bins=9, fill="cyan", color="black", center=12) +  # this center is the closest I could get to match the original figure, but the bars around x=30 are still not quite accurate; bins = number of bars
+  xlab("UV detection at 315 nm (energy in μwatts)") +  # label x axis
+  ylab("Number of subjects") +  # label y axis
+  scale_y_continuous(breaks = c(0,2,4,6,8,10,12,14,16,18), expand = c(0,0)) +  # generate values on y axis and have bars touch x axis
+  scale_x_continuous(breaks = c(10,20,30,40), expand = c(0,0)) + # generate values on x axis and have bars touch y axis
+  theme_base(base_family="Arial")  # set chart theme and font
+# how do I make the bars align with the tick marks on the x axis?
+# still a bit confused how center= works
+UV_hist
+
+```
+

@@ -43,6 +43,8 @@ output:
 
 [Creating Functions](Weekly Assignments/Weekly_Assignment_2.html)
 
+[Using Publicly Available Data](Weekly Assignments/Weekly_Assignment_3.html)
+
 ## Lecture Notes
 
 [Lecture 1](.html)
