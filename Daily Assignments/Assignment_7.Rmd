@@ -57,27 +57,22 @@ p1 <- ggplot(data=clean_starwars, aes(x=species, y=height, fill=species)) +
 
 4. Using the same or a different built-in data set, create at least one additional (and different kind of) plot. Experiment with different arguments, features, and colors.
 ```{r}
-species_petalLength <- filter(iris)
+data(iris)
+glimpse(iris)
+petal_sizes <- iris %>%
+  group_by(Species) %>%
+  summarize(meanPetal.Length = mean(Petal.Length), meanPetal.Width = mean(Petal.Width))  # create summary table of petal sizes
+petal_sizes
 
+library(viridis)
+cols <- viridis(3, option = "viridis")  # create colors variable
 
-
-homeworld_counts <- starwars %>% 
-  count(homeworld)
-glimpse(homeworld_counts)
-
-homeworld_names <- filter(homeworld_counts, n>1)
-homeworld_names
-
-filtered_starwars2 <- filter(starwars, homeworld %in% c("Alderaan", "Corellia", "Coruscant", "Kamino", "Kashyyyk", "Mirial", "Naboo", "Ryloth", "Tatooine"))
-head(filtered_starwars2)
-anyNA(filtered_starwars2[,10])
-
-clean_starwars2 <- filtered_starwars2[complete.cases(filtered_starwars2[,8]),]  # filter NAs from 'sex' column
-
-p2 <- ggplot(clean_starwars2, aes(x="homeworld", y=sex, fill=sex)) +
-  geom_bar(stat="identity", width=1) +
-  coord_polar("y", start=0) +
-  facet_grid(.~homeworld)
+p2 <- ggplot(petal_sizes, aes(x=Species, y=meanPetal.Length, fill=Species)) +  # select data for plot
+  geom_bar(stat="identity") +  # create bar graph
+  xlab("Species") +  # set x-axis label
+  ylab("Mean Petal Length") +  # set y-axis label
+  scale_fill_manual(values=cols)  # set colors of bars
+p2
 ```
 
 
