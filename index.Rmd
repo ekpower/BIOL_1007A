@@ -47,18 +47,20 @@ output:
 
 ## Lecture Notes
 
-[Lecture 1](.html)
+[Lecture 1: Introduction](https://docs.google.com/document/d/1gbHUGECIPIO6MnY-c9FWCvZtydE56ikvY341kDyctP0/edit)
 
-[Lecture 2](.html)
+[Lecture 2: Basics of RStudio and Git](https://docs.google.com/document/d/1gbHUGECIPIO6MnY-c9FWCvZtydE56ikvY341kDyctP0/edit)
 
-[Lecture 3](.html)
+[Lecture 3: Git and GitHub](https://docs.google.com/document/d/1gbHUGECIPIO6MnY-c9FWCvZtydE56ikvY341kDyctP0/edit)
 
-[Lecture 4](.html)
+[Lecture 4: Programming in R](Lecture Notes/2023-01-12-Scripting-in-R.html)
 
-[Lecture 5](.html)
+[Lecture 5: Vectors, Matrices, Data Frames, and Lists](Lecture Notes/2023-01-17-Data-Structures.html)
 
-[Lecture 6](.html)
+[Lecture 6: Finishing up Matrices and Data Frames](Lecture Notes/2023-01-19-Matrices-DFs-Functions.html)
 
-[Lecture 7: ggplot2](Lecture Notes/2023-01-24-ggplot.html)
+[Lecture 7: Entering the tidyverse (dplyr)](Lecture Notes/2023-01-23-dplyr.html)
 
-[Lecture 8: Loading in Data](Lecture Notes/2023-01-26-loading-data.html)
+[Lecture 8: ggplot2](Lecture Notes/2023-01-24-ggplot.html)
+
+[Lecture 9: Loading in Data](Lecture Notes/2023-01-26-loading-data.html)

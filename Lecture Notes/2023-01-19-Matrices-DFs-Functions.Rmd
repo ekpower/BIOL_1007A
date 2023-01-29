@@ -1,0 +1,164 @@
+---
+title: "Finishing up Matrices and Data Frames"
+author: "Emily K. Power"
+date: "19 January 2023"
+output: 
+    prettydoc::html_pretty:
+        theme: hpstr
+        highlight: github
+---
+
+```{r}
+m <- matrix(data = 1:12, nrow = 3)
+```
+
+### subsetting based on elements
+```{r}
+m[1:2, ]
+m[, 2:4]
+```
+
+### subset with logical (conditional) statements
+```{r}
+## select all columns for which the totals are greater than 15
+colSums(m) > 15
+m[, colSums(m) > 15]  # subsets based on conditions (sum of column > 15)
+```
+
+### row sums 
+```{r}
+## select rows that sum up to 22
+m[rowSums(m)==22,]
+m[rowSums(m)!=22,]
+```
+
+### LOGICAL OPERATORS:
+  * == equals
+  * != does not equal
+  * > greater than 
+  * < less than 
+
+### subsetting to a vector changes the data type
+```{r}
+z <- m[1, ]
+print(z)
+str(z)
+
+z2 <- m[1, , drop=FALSE]  # argument maintains the matrix identity
+```
+
+### simulate new matrix
+```{r}
+m2 <- matrix(data = runif(9), nrow=3)
+m2[3,2]
+```
+
+### use assignment operator to substitute values
+```{r}
+m2[m2 > 0.6] <- NA  # makes any value >0.6 an NA
+
+data <- iris
+head(data)
+tail(data)
+
+data[3,2]  # numbered indices work, but sometimes it's better to use names
+dataSub <- data[,c("Species", "Petal.Length")]
+str(dataSub)
+```
+
+### sort a data frame by values
+```{r}
+orderedIris <- iris[order(iris$Petal.Length),]
+```
+
+
+## FUNCTIONS in R
+
+### everything in R is a function
+```{r}
+sum(3,2)  # sum
+3+2  # + sign is a function
+sd
+```
+
+### User-defined functions
+```{r}
+# functionName <- function(argX=defaultX, argY=defaultY){
+  ## curly bracket starts the body of the function
+    ## lines of code
+    ## notes
+    ## create local variables - only 'visible' to R WITHIN the function
+  ## always end with return(z) (like print())
+# }
+
+myFunc <- function(a=3, b=4){
+  z <- a + b
+  return(z)
+}
+myFunc()  # runs default arguments
+myFunc(a=100, b=3.4)  # runs new values
+
+## example of a bad function:
+#myFuncBad <- function(a=3){
+  #z <- a + b
+  #return(z)
+#}
+# myFuncBad()  # error: object B not found
+
+## how to use with no default values:
+myFuncNull <- function(a=NULL, b=NULL){
+  z <- a + b
+  return(z)
+}
+#myFuncBad()  # returns 'integer 0'
+```
+
+### Multiple return statements
+```{r}
+########################################################################
+# FUNCTION: HardyWeinberg
+# input: all allele frequency p (0,1)
+# output: p and the frequencies of 3 genotypes AA AB BB
+#-----------------------------------------------------------------------
+HardyWeinberg <- function(p = runif(1)){
+  if(p > 1.0 | p < 0.0){
+    return("Function failure: p must be between 0 and 1")
+  }               ## | means 'or', {} means 'then'
+  q <- 1 - p
+  fAA <- p^2      ## 'frequency of AA allele is p^2
+  fAB <- 2*p*q
+  fBB <- q^2
+  vecOut <- signif(c(p=p, AA=fAA, AB=fAB, BB=fBB), digits=3)
+  return(vecOut)  ## signif outputs significant figures
+}
+########################################################################
+
+HardyWeinberg()
+freqs <- HardyWeinberg()
+freqs
+HardyWeinberg(p=3)  ## prints return message
+```
+
+### Create a complex default value
+```{r}
+########################################################################
+# FUNCTION: fitLinear2
+# fits simple regression line
+# input: numeric vector (p) of predictor (x) and response (y)
+# outputs: slope and p-value
+#-----------------------------------------------------------------------
+fitLinear2 <- function(p=NULL){
+  if(is.null(p)){
+    p <- list(x=runif(20), y=runif(20))
+  }       # 'if p is null, then we'll make a variable p'
+  myMod <- lm(p$x~p$y)
+  myOut <- c(slope = summary(myMod)$coefficients[2,1], 
+             pValue = summary(myMod)$coefficients[2,4])
+  plot(x=p$x, y=p$y)  # quick plot to check output
+  return(myOut)
+}
+########################################################################
+fitLinear2()
+myPars <- list(x=1:10, y=runif(10))
+fitLinear2(p=myPars)
+```

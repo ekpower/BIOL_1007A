@@ -1,0 +1,220 @@
+---
+title: "Programming in R"
+author: "Emily K. Power"
+date: "12 January 2023"
+output: 
+    prettydoc::html_pretty:
+        theme: hpstr
+        highlight: github
+---
+
+### Advantages of R  
+  * interactive use  
+  * graphics, statistics  
+  * very active community of contributors  
+  * works on multiple platforms  
+
+### Disadvantages of R  
+  * lazy evaluation  
+  * some packages are poorly documented  
+  * functions are hard to learn  
+  * unreliable packages  
+  * problems with big data (multiple GBs)  
+
+### Let's start with the basics  
+
+### Assignment operator: used to assign a new value to a variable (<-)
+```{r}
+x <- 5      # displays values in environment
+print(x)    # prints output of x to console
+x           # same as print(x), can also just highlight x and run
+
+y = 4           # legal, but not used except in function arguments
+print (y)
+y = y + 1.1     # 5.1; takes previous value of y (4) and adds 1.1
+y <- y + 1.1    # 6.2; makes more sense than =
+```
+
+### To run code all at once:
+  * highlight everything and run
+  * click 'source' button
+
+### Variables: used to store information like a container
+  * can hold many types of data
+```{r}
+z <- 3
+plantHeight <- 10  # 'camel case format' (1 lowercase, 2 uppercase)
+plant_height <- 3.3  # 'snake case format', a preferred method
+plant.height <- 4.2  # generally avoid
+. <- 5.5 # reserve for temporary variable (. acts as placeholder)
+```
+
+### Functions: blocks of code that perform a task
+  * can use a short command over again instead of writing block of code multiple times
+  * you can create your own function!
+```{r}
+square <- function(x = NULL){
+  x <- x^2  # take variable x, square it and override initial x
+  print(x)
+}
+## put argument in ()
+
+square(x=3)
+
+z <- 103
+square(x = z)  # argument name is x
+```
+
+### Built In Functions
+```{r}
+sum(109, 3, 10)  
+## look at package info using ?sum or going to Help panel
+```
+
+### Atomic Vectors
+  * one dimensional (a single row)
+  * one of the most fundamental data structures in R programming
+
+### Types of Atomic Vectors:
+  * character strings (usually within quotes)
+  * integers (whole numbers; numeric)
+  * double (real numbers, decimals; numeric)
+  * logical (TRUE or FALSE)
+  * factor (categorizes and groups variable)
+
+### c Function - combines different elements & puts as one vector
+  * useful for creating vectors
+```{r}
+z <- c(3.2, 5, 5, 6)
+print(z)
+class(z)          # function that returns class of variable
+typeof(z)         # function that returns type of variable
+is.numeric(z)     # function that returns T/F
+## this is TRUE because z is numeric (asks 'is z numeric'?)
+## if you wrote is.logical(z), it would return FALSE
+
+# c() always 'flattens' to a vector
+z <- c(c(3,4), c(5,6))   # still works!
+```
+
+### Character Vectors
+```{r}
+z <- c("perch", "bass", "trout")
+print(z)
+z <- c("This is only 'one' character string", "a second", "a third")
+print(z)
+typeof(z)
+is.character(z)  # is. functions fest whether it is a certain data type
+```
+
+### Logical (Boolean), no quotes, all caps: TRUE and/or FALSE
+```{r}
+z <- c(TRUE, FALSE, T, F)  # as. functions coerce data type
+z <- as.character(z)
+is.logical(z)
+```
+
+### Type (vector property)
+  * is.numeric / as.character
+  * typeof()
+
+### Length (vector property)
+```{r}
+length(z)  # number of items in function
+dim(z)     # will return 'NULL' because vectors only have 1 dimension
+```
+
+### Names
+```{r}
+z <- runif(5)  # function gives 5 random uniform numbers between 0 & 1
+names(z)       # no names
+names(z) <- c("chow", "pug", "beagle", "greyhound", "akita") # add names to random uniform values
+print(z)
+names(z)  # shows names now
+names(z) <- NULL  # shows no names
+```
+
+### NA values - missing data
+```{r}
+z <- c(3.2, 3.5, NA)  # NA could be an empty cell in excel
+typeof(z)
+mean(z)          # if there are any NAs in vector, arithmetic won't work
+anyNA(z)         # checks if there are any NAs in vector
+is.na(z)         # shows which cells in vector are NAs
+which(is.na(z))  # tells you where the NA is (which specific index)
+## helpful for exploring data and determining where NAs are
+```
+
+### Subsetting vectors - filters for certain elements
+  * gives set of conditions of what we want from vector
+```{r}
+z <- c(3.1, 9.2, 1.3, 0.4, 7.5)
+z[4]         # square brackets subset by index (run the 4th element)
+z[c(4,5)]    # use c to return multiple indices
+z[-c(2,3)]   # '-' sign excludes elements listed in parentheses
+z[-1]        # returns everything except first value
+z[z==7.5]    # '==' only returns values that meet the condition (= 7.5)
+## '==' means 'exact match'
+z[z<7.5]     # 'return all elements in 7 that are less than 7.5'
+## use logical statements within square brackets to subset by conditions
+
+which(z < 7.5)  # 'which elements in z are less than 7.5?'
+```
+
+### Creating logical vector
+```{r}
+z < 7.5  # returns location of elements less than 7.5
+```
+
+### Subsetting characters (named elements)
+```{r}
+names(z) <- c("a", "b", "c", "d", "e")  # names elements in z vector
+z[c("a", "d")]  # returns a & d and their corresponding values
+```
+
+### Subset function - alternative to using brackets
+```{r}
+subset(x = z, subset = z > 1.5)  
+## first argument is what you want to subset
+  ## x is automatically built into function
+## subset = condition you want
+```
+
+### Randomly Sample
+  * sample function
+```{r}
+story_vec <- c("A", "Frog", "Jumped", "Here")
+sample(story_vec)
+```
+
+### randomly select 3 elements from vector
+```{r}
+sample(story_vec, size = 3)
+
+story_vec <- c(story_vec[1], "Green", story_vec[2:4])
+## adds 'green' to the story between 1st and 2nd elements
+## : signifies a range between 1st and last numbers
+
+story_vec[2] <- "Blue"
+## replaces 2nd element (green)
+```
+
+### vector function
+```{r}
+vec <- vector(mode = "numeric", length = 5)
+```
+
+### rep and seq functions - make patterns of values
+```{r}
+z <- rep(x = 0, times = 100)  # repeats value 0 100 times
+z <- rep(x = 1:4, each = 3)
+## repeats each element 3 times
+
+z <- seq(from = 2, to = 4)
+## returns sequence of numbers from 2 to 4
+seq(from = 2, to = 4, by = 0.5)
+## returns sequence of numbers from 2.4 by units of 0.5
+z <- runif(5)
+seq(from = 1, to = length(z))
+## returns sequence of numbers for length of z if z is 5 elements
+```
