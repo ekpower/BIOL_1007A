@@ -1,0 +1,169 @@
+---
+title: "Simple Data Analysis and More Complex Control Structures"
+author: "Emily K. Power"
+date: "30 January 2023"
+output: 
+    prettydoc::html_pretty:
+        theme: hpstr
+        highlight: github
+editor_options: 
+  chunk_output_type: console
+---
+
+### Load in data:
+```{r}
+dryadData <- read.table(file="/Users/emilypower/Desktop/BIOL_1007A/Data/NE_amphibians.csv", header=TRUE, sep=",")
+```
+
+### Set up libraries:
+```{r}
+library(tidyverse)
+library(ggthemes)
+```
+
+### Analyses
+  * For experimental designs, you usually have:
+    * An **independent/explanatory variable** (x-axis) vs. **dependent/response variable** (y-axis)
+  * Continuous vs. discrete variables affect this
+    * **Continuous variables** (range of numbers: height, weight, temperature) vs. **discrete/categorical variables** (categories: species, treatments, site)
+    
+      _        |   _   |  y-axis (response)  |   _
+------------- | -------------  |  ------------- | -------------
+ _ |  _  |  Continuous  |   Categorical
+  x-axis (explanatory) | Continuous  |  Linear regression (scatter plot)  |  logistic regression (curve)
+       _       |  Categorical  |  t-test (2 groups), ANOVA (2+)  |  chi-squared (count); table, mosaic plot
+
+```{r}
+glimpse(dryadData)
+```
+### Basic linear regression analysis (2 continuous variables)
+  * Is there a relationship between the mean pool hydroperiod and the number of breeding frogs caught?
+```{r}
+# y ~ x
+regModel <- lm(count.total.adults ~ mean.hydro, data=dryadData)
+print(regModel)
+summary(regModel)
+hist(regModel$residuals)
+
+# how much does the variance in x explain the variance in y?
+summary(regModel)$"r.squared"
+summary(regModel)[["r.squared"]]  # does the same thing as above
+# View(summary(regModel))
+
+# a scatter plot to go along with this analysis:
+regPlot <- ggplot(data=dryadData, aes(x=mean.hydro, y=count.total.adults+1)) +
+  geom_point(size=2) +
+  stat_smooth(method="lm", se=0.99)
+regPlot + theme_few()
+  # "lm" gives linear regression
+```
+
+### Basic ANOVA
+  * Was there a statistically significant difference in the number of adults among wetlands?
+```{r}
+ANOmodel <- aov(count.total.adults ~ factor(wetland), data=dryadData)  # aov() is ANOVA function
+summary(ANOmodel)
+```
+**^HAVE TO make sure that the categorical variable you're giving to R is actually categorical, not numbers (eg. use the `factor()` function)**
+
+```{r}
+dryadData %>%
+  group_by(wetland) %>%
+  summarise(avgHydro = mean(count.total.adults, na.rm=T), totalNumber=n())
+```
+
+### Boxplot
+```{r}
+dryadData$wetland <- factor(dryadData$wetland)  # overrides to turn integer to factor
+class(dryadData$wetland)  # now a factor
+
+ANOplot <- ggplot(data=dryadData, mapping=aes(x=wetland, y=count.total.adults)) +
+  geom_boxplot()
+ANOplot
+```
+#### ^ to see what that looks like between species, use the `fill` argument:
+```{r}
+ANOplot2 <- ggplot(data=dryadData, mapping=aes(x=wetland, y=count.total.adults, fill=species)) +
+  geom_boxplot() +
+  scale_fill_grey()
+ANOplot2
+ggsave(file="SpeciesBoxplots.pdf", plot=ANOplot2, device="pdf")
+  # saves file to BIOL_1007A folder in desktop
+```
+
+### Logistic regression
+  * Construct data frame:
+    * **gamma probabilities**: continuous variables that are always positive and have a skewed distribution
+```{r}
+xVar <- sort(rgamma(n=200, shape=5, scale=5))
+  # n means we want 200 rgamma values
+yVar <- sample(rep(c(1,0), each=100), prob=seq_len(200))
+logRegData <- data.frame(xVar, yVar)
+```
+  * ^ for statistic regression, **yVar** is the categorical variable
+
+### Logistic regression analysis
+```{r}
+logRegModel <- glm(yVar ~ xVar, 
+                   data=logRegData,
+                   family=binomial(link=logit))
+  # link=logit specifies that we want a logistic regression
+summary(logRegModel)
+
+logRegPlot <- ggplot(data=logRegData, aes(x=xVar, y=yVar)) +
+  geom_point() +
+  stat_smooth(method = "glm", method.args=list(family=binomial))
+  # "glm" gives logistic regression
+logRegPlot
+```
+
+### Contingency tables (chi-squared) Analysis
+  * Are there differences in counts of males and females between species?
+```{r}
+countData <- dryadData %>%
+  group_by(species) %>%
+  summarize(Males=sum(No.males, na.rm=TRUE), Females=sum(No.females, na.rm=TRUE)) %>%
+  select(-species) %>%
+  as.matrix()
+countData
+
+row.names(countData) = c("SS", "WF")
+  # SS = spotted salamander, WF = wood frog
+countData  # now has row names
+
+# chi-squared
+  # get residuals
+testResults <- chisq.test(countData)$residuals  # less males in SS than would be expected, less females in WF than would be expected
+```
+
+### Mosaic plot (base R)
+```{r}
+mosaicplot(x=countData,
+           col=c("goldenrod", "grey"),
+           shade = FALSE)
+```
+
+### Bar plot
+  * Prepare data:
+```{r}
+countDataLong <- countData %>%
+  as_tibble() %>%  # computer wants it in tbl format, not matrix
+  mutate(Species = c(rownames(countData)))  %>%  # adds species column
+  pivot_longer(cols=Males:Females,  # specifies which columns we want longer
+              names_to = "Sex",
+              values_to = "Count")
+```
+
+### Plot bar graph:
+```{r}
+ggplot(data=countDataLong, mapping=aes(x=Species, y=Count, fill=Sex)) +
+  geom_bar(stat="identity", position="dodge") +  # identity prevents it from making automatic histogram; dodge plots bars next to each other
+  scale_fill_manual(values=c("magenta", "midnightblue"))
+```
+
+
+
+
+
+
+

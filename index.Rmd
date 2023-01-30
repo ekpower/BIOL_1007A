@@ -66,3 +66,5 @@ output:
 [Lecture 8: ggplot2](Lecture Notes/2023-01-24-ggplot.html)
 
 [Lecture 9: Loading in Data](Lecture Notes/2023-01-26-loading-data.html)
+
+[Lecture 10: Simple Data Analysis and More Complex Control Structures](Lecture Notes/2023-01-30-Analysis-and-Control-Structures.html)
