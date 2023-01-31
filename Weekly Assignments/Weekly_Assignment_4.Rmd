@@ -1,0 +1,56 @@
+---
+title: "Weekly Assignment 4"
+author: "Emily K. Power"
+date: "`r Sys.Date()`"
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+Simulate a brand new data frame (the type of data is up to you) and conduct a statistical analysis in R using 2 variables. Create a basic ggplot that goes with the analysis.
+
+```{r}
+# load packages
+library(tidyverse)
+library(ggthemes)
+library(viridis)
+
+# load data
+data(iris)
+glimpse(iris)
+
+# investigate species vs. sepal length
+flower <- data.frame(Species=iris$Species, Sepal_Length=iris$Sepal.Length)  # generate data frame
+head(flower)
+
+# generate box plot
+cols <- viridis(3, option = "viridis")  # load colors
+figure <- ggplot(data = flower, mapping = aes(x=Species, y=Sepal_Length, fill=Species)) +  # specify data and fill of boxes
+  geom_boxplot(color="darkgreen") +  # create box plot
+  scale_fill_manual(values=cols) +  # set colors
+  ylab("Sepal Length") +  # label y axis
+  theme_classic()  # add chart theme
+figure
+```
+
+#### **Fig. 1** Variance in sepal length across three species of iris flower.
+
+
+```{r}
+# analyze significance
+########################################################################
+# FUNCTION: ANOVA_function
+# returns the p-value of an ANOVA summary table
+# input: a data frame
+# outputs: p-value
+#-----------------------------------------------------------------------
+ANOVA_function <- function(y=flower$Sepal_Length, x=flower$Species, df=NULL){
+  test <- aov(y ~ x, data=df)  # analyzes relationship
+  test_summary <- summary(test)  # makes test summary
+  p_value <- test_summary[[1]][["Pr(>F)"]][1]  # pulls p value from test summary data frame
+  return(p_value)  # returns p value
+}
+anova <- data.frame(p_value=ANOVA_function(df=flower))  # make data frame with p-value
+anova
+```
+

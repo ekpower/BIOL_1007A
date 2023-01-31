@@ -37,6 +37,8 @@ output:
 
 [Assignment 8](Daily Assignments/Assignment_8.html)
 
+[Assignment 9](Daily Assignments/Assignment_9.html)
+
 ## Weekly Assignments
 
 [GitHub Webpage Guide](Weekly Assignments/Weekly_Assignment_1.html)
@@ -44,6 +46,8 @@ output:
 [Creating Functions](Weekly Assignments/Weekly_Assignment_2.html)
 
 [Using Publicly Available Data](Weekly Assignments/Weekly_Assignment_3.html)
+
+[Statistical Analysis](Weekly Assignments/Weekly_Assignment_4.html)
 
 ![](/Users/emilypower/Desktop/BIOL_1007A/Images/long-page-break.png)
 
