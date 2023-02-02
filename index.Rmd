@@ -49,6 +49,10 @@ output:
 
 [Statistical Analysis](Weekly Assignments/Weekly_Assignment_4.html)
 
+## Final Assignment
+
+[Reproducing Excel Figures in R](Weekly Assignments/Final_Assignment.html)
+
 ![](/Users/emilypower/Desktop/BIOL_1007A/Images/long-page-break.png)
 
 ## Lecture Notes
