@@ -15,12 +15,14 @@ v  # print vector
 
 counter <- 0  # set up counter variable
 
-for(i in 1:length(v)) {
-  if(v[i]==0) {
-    counter <- counter + 1} else{}
-  print(counter)
+v_func <- function(vec=NULL){  # create function
+for(i in 1:length(vec)) {  # for the entire vector...
+  if(vec[i]==0) {  # if the value = 0...
+    counter <- counter + 1}  # add 1
+  }
+  return(counter)  # return result
 }
-v  # not working
+v_func(vec=v)
 ```
 
 
@@ -35,7 +37,7 @@ columns <- sample(1:12, 1)  # select one random number
 # input: two integers representing the number of rows and columns in a matrix
 # output: a matrix of these dimensions in which each element is the product of the row number x the column number
 #-----------------------------------------------------------------------
-func <- function(r=rows, c=columns) {  # set input as random integers defined previously
+func <- function(r=NULL, c=NULL) {  # set input as random integers defined previously
   m <- matrix(nrow=r, ncol=c)  # make matrix with r rows and c columns
   for (i in 1:nrow(m)){  # for each row in the matrix...
   for (j in 1:ncol(m)){   # for each column in the matrix...
@@ -45,48 +47,33 @@ func <- function(r=rows, c=columns) {  # set input as random integers defined pr
   return(m)  # return matrix
 }
 
-output <- func()
+output <- func(r=rows, c=columns)
 output
 ```
 
 
 3. Use a `for` loop to repeat your previous functions from Weekly Assignment 2 (which simulate a data frame and extract a p-value) 100 times. Store the results in a data frame that has 1 column indicating the replicate number and 1 column for the p-values (a total of 2 columns and 100 rows).
 ```{r}
-########################################################################
-# FUNCTION: new_function
-# returns a data frame with 2 columns (named “Type” and “Value”) and 50 rows/observations
-# input: mean and standard deviation
-# outputs: "Type" and "Value"
-#-----------------------------------------------------------------------
 new_function <- function(means=c(10, 45), sds=c(1.5, 2), n=25){
   Type <- rep(c("Control", "Treatment"), each=n)  # create "Type" column with n "Control" and n "Treatment" variables
   Value <- c(rnorm(n, mean=means[1], sd=sds[1]), rnorm(n, mean=means[2], sd=sds[2]))  # generate random normally distributed values with set means and standard deviations
   df <- data.frame(Type, Value)  # generate data frame
   return(df)  # returns data frame
 }
-new_func <- new_function()
-new_func
 
-########################################################################
-# FUNCTION: ANOVA_function
-# returns the p-value of an ANOVA summary table
-# input: a data frame
-# outputs: p-value
-#-----------------------------------------------------------------------
-ANOVA_function <- function(df=NULL){
-  test <- aov(Value ~ Type, data=df)  # same as before
+ANOVA_function <- function(dF){
+  test <- aov(dF[,2] ~ dF[,1], data = dF)  # execute anova
   test_summary <- summary(test)  # makes test summary
   p_value <- test_summary[[1]][["Pr(>F)"]][1]  # pulls p value from test summary data frame
   return(p_value)  # returns p value
 }
 
-#########################################################################
-output1 <- new_func[,2]  # create variable for new_function output excluding "Type" column
-output2 <- ANOVA_function(new_func)  # create variable for ANOVA_function output
-
-for(i in 1:100){  # repeat 100 times
-  df <- data.frame(replicate_number = output1, p_values = output2)  # create data frame with two columns containing replicate numbers and p values
+loop <- data.frame(rep_number = rep(NA,100), p_value = rep(NA,100))
+for (i in 1:100) {  # creates data frame with 2 columns (rep_number and p_value) and 100 rows
+  new_func <- new_function()  # sets variable for new_function() output
+  p_value <- ANOVA_function(new_func)  # sets variable for anova output
+  loop[i,"rep_number"] <- i  # repeat row number 100 times
+  loop[i,"p_value"] <- p_value  # list p_value 100 times
 }
-df  # print data frame
+head(loop)
 ```
-

@@ -11,7 +11,7 @@
 
 <meta name="author" content="Emily K. Power" />
 
-<meta name="date" content="2023-01-31" />
+<meta name="date" content="2023-02-03" />
 
 <title>Assignment 9</title>
 
@@ -352,7 +352,7 @@ display: none;
 
 <h1 class="title toc-ignore">Assignment 9</h1>
 <h4 class="author">Emily K. Power</h4>
-<h4 class="date">2023-01-31</h4>
+<h4 class="date">2023-02-03</h4>
 
 </div>
 
@@ -373,65 +373,15 @@ v  # print vector</code></pre>
 ## [39] 0.4 0.4 0.6 0.5 1.0 0.2 0.8 0.1 0.4 0.0 0.2 0.8</code></pre>
 <pre class="r"><code>counter &lt;- 0  # set up counter variable
 
-for(i in 1:length(v)) {
-  if(v[i]==0) {
-    counter &lt;- counter + 1} else{}
-  print(counter)
-}</code></pre>
-<pre><code>## [1] 0
-## [1] 0
-## [1] 0
-## [1] 0
-## [1] 0
-## [1] 1
-## [1] 1
-## [1] 1
-## [1] 2
-## [1] 3
-## [1] 3
-## [1] 3
-## [1] 3
-## [1] 3
-## [1] 3
-## [1] 3
-## [1] 3
-## [1] 3
-## [1] 3
-## [1] 3
-## [1] 3
-## [1] 3
-## [1] 3
-## [1] 3
-## [1] 3
-## [1] 3
-## [1] 3
-## [1] 3
-## [1] 3
-## [1] 3
-## [1] 3
-## [1] 3
-## [1] 3
-## [1] 3
-## [1] 3
-## [1] 3
-## [1] 3
-## [1] 3
-## [1] 3
-## [1] 3
-## [1] 3
-## [1] 3
-## [1] 3
-## [1] 3
-## [1] 3
-## [1] 3
-## [1] 3
-## [1] 4
-## [1] 4
-## [1] 4</code></pre>
-<pre class="r"><code>v  # not working</code></pre>
-<pre><code>##  [1] 0.1 0.8 0.9 0.3 0.2 0.0 0.2 0.6 0.0 0.0 0.4 0.8 0.4 0.4 0.3 0.4 0.5 0.5 0.7
-## [20] 0.1 0.2 0.8 0.1 0.7 0.2 0.3 0.5 0.2 0.4 0.7 0.2 0.9 0.9 0.8 0.6 0.9 0.7 0.8
-## [39] 0.4 0.4 0.6 0.5 1.0 0.2 0.8 0.1 0.4 0.0 0.2 0.8</code></pre>
+v_func &lt;- function(vec=NULL){  # create function
+for(i in 1:length(vec)) {  # for the entire vector...
+  if(vec[i]==0) {  # if the value = 0...
+    counter &lt;- counter + 1}  # add 1
+  }
+  return(counter)  # return result
+}
+v_func(vec=v)</code></pre>
+<pre><code>## [1] 4</code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li>Write a function that takes as input two integers representing the
 number of rows and columns in a matrix. The output is a matrix of these
@@ -447,7 +397,7 @@ columns &lt;- sample(1:12, 1)  # select one random number
 # input: two integers representing the number of rows and columns in a matrix
 # output: a matrix of these dimensions in which each element is the product of the row number x the column number
 #-----------------------------------------------------------------------
-func &lt;- function(r=rows, c=columns) {  # set input as random integers defined previously
+func &lt;- function(r=NULL, c=NULL) {  # set input as random integers defined previously
   m &lt;- matrix(nrow=r, ncol=c)  # make matrix with r rows and c columns
   for (i in 1:nrow(m)){  # for each row in the matrix...
   for (j in 1:ncol(m)){   # for each column in the matrix...
@@ -457,7 +407,7 @@ func &lt;- function(r=rows, c=columns) {  # set input as random integers defined
   return(m)  # return matrix
 }
 
-output &lt;- func()
+output &lt;- func(r=rows, c=columns)
 output</code></pre>
 <pre><code>##      [,1] [,2] [,3] [,4] [,5] [,6]
 ## [1,]    1    2    3    4    5    6
@@ -475,143 +425,35 @@ Weekly Assignment 2 (which simulate a data frame and extract a p-value)
 indicating the replicate number and 1 column for the p-values (a total
 of 2 columns and 100 rows).</li>
 </ol>
-<pre class="r"><code>########################################################################
-# FUNCTION: new_function
-# returns a data frame with 2 columns (named “Type” and “Value”) and 50 rows/observations
-# input: mean and standard deviation
-# outputs: &quot;Type&quot; and &quot;Value&quot;
-#-----------------------------------------------------------------------
-new_function &lt;- function(means=c(10, 45), sds=c(1.5, 2), n=25){
+<pre class="r"><code>new_function &lt;- function(means=c(10, 45), sds=c(1.5, 2), n=25){
   Type &lt;- rep(c(&quot;Control&quot;, &quot;Treatment&quot;), each=n)  # create &quot;Type&quot; column with n &quot;Control&quot; and n &quot;Treatment&quot; variables
   Value &lt;- c(rnorm(n, mean=means[1], sd=sds[1]), rnorm(n, mean=means[2], sd=sds[2]))  # generate random normally distributed values with set means and standard deviations
   df &lt;- data.frame(Type, Value)  # generate data frame
   return(df)  # returns data frame
 }
-new_func &lt;- new_function()
-new_func</code></pre>
-<pre><code>##         Type     Value
-## 1    Control 10.969762
-## 2    Control  7.853130
-## 3    Control 10.394937
-## 4    Control 10.348704
-## 5    Control  9.742702
-## 6    Control 12.559618
-## 7    Control 11.701468
-## 8    Control  9.351711
-## 9    Control 10.675239
-## 10   Control 11.359853
-## 11   Control 11.718635
-## 12   Control  9.007875
-## 13   Control 12.765544
-## 14   Control  9.290183
-## 15   Control  8.264224
-## 16   Control  7.113565
-## 17   Control 11.449803
-## 18   Control 12.412896
-## 19   Control  9.610498
-## 20   Control  9.191945
-## 21   Control  7.757730
-## 22   Control 10.925121
-## 23   Control 10.252245
-## 24   Control  8.133778
-## 25   Control 13.290562
-## 26 Treatment 42.483489
-## 27 Treatment 47.033642
-## 28 Treatment 48.108215
-## 29 Treatment 48.184774
-## 30 Treatment 42.224297
-## 31 Treatment 46.681693
-## 32 Treatment 44.536644
-## 33 Treatment 44.551142
-## 34 Treatment 46.399615
-## 35 Treatment 44.637495
-## 36 Treatment 48.343591
-## 37 Treatment 44.117071
-## 38 Treatment 48.484059
-## 39 Treatment 45.467370
-## 40 Treatment 44.554215
-## 41 Treatment 43.040531
-## 42 Treatment 43.571476
-## 43 Treatment 45.443727
-## 44 Treatment 41.760141
-## 45 Treatment 45.978530
-## 46 Treatment 46.184596
-## 47 Treatment 45.484792
-## 48 Treatment 48.308326
-## 49 Treatment 46.246983
-## 50 Treatment 48.917479</code></pre>
-<pre class="r"><code>########################################################################
-# FUNCTION: ANOVA_function
-# returns the p-value of an ANOVA summary table
-# input: a data frame
-# outputs: p-value
-#-----------------------------------------------------------------------
-ANOVA_function &lt;- function(df=NULL){
-  test &lt;- aov(Value ~ Type, data=df)  # same as before
+
+ANOVA_function &lt;- function(dF){
+  test &lt;- aov(dF[,2] ~ dF[,1], data = dF)  # execute anova
   test_summary &lt;- summary(test)  # makes test summary
   p_value &lt;- test_summary[[1]][[&quot;Pr(&gt;F)&quot;]][1]  # pulls p value from test summary data frame
   return(p_value)  # returns p value
 }
 
-#########################################################################
-output1 &lt;- new_func[,2]
-output2 &lt;- ANOVA_function(new_func)
-
-for(i in 1:100){
-  df &lt;- data.frame(replicate_number = output1, p_values = output2)
+loop &lt;- data.frame(rep_number = rep(NA,100), p_value = rep(NA,100))
+for (i in 1:100) {  # creates data frame with 2 columns (rep_number and p_value) and 100 rows
+  new_func &lt;- new_function()  # sets variable for new_function() output
+  p_value &lt;- ANOVA_function(new_func)  # sets variable for anova output
+  loop[i,&quot;rep_number&quot;] &lt;- i  # repeat row number 100 times
+  loop[i,&quot;p_value&quot;] &lt;- p_value  # list p_value 100 times
 }
-df</code></pre>
-<pre><code>##    replicate_number     p_values
-## 1         10.969762 1.109344e-48
-## 2          7.853130 1.109344e-48
-## 3         10.394937 1.109344e-48
-## 4         10.348704 1.109344e-48
-## 5          9.742702 1.109344e-48
-## 6         12.559618 1.109344e-48
-## 7         11.701468 1.109344e-48
-## 8          9.351711 1.109344e-48
-## 9         10.675239 1.109344e-48
-## 10        11.359853 1.109344e-48
-## 11        11.718635 1.109344e-48
-## 12         9.007875 1.109344e-48
-## 13        12.765544 1.109344e-48
-## 14         9.290183 1.109344e-48
-## 15         8.264224 1.109344e-48
-## 16         7.113565 1.109344e-48
-## 17        11.449803 1.109344e-48
-## 18        12.412896 1.109344e-48
-## 19         9.610498 1.109344e-48
-## 20         9.191945 1.109344e-48
-## 21         7.757730 1.109344e-48
-## 22        10.925121 1.109344e-48
-## 23        10.252245 1.109344e-48
-## 24         8.133778 1.109344e-48
-## 25        13.290562 1.109344e-48
-## 26        42.483489 1.109344e-48
-## 27        47.033642 1.109344e-48
-## 28        48.108215 1.109344e-48
-## 29        48.184774 1.109344e-48
-## 30        42.224297 1.109344e-48
-## 31        46.681693 1.109344e-48
-## 32        44.536644 1.109344e-48
-## 33        44.551142 1.109344e-48
-## 34        46.399615 1.109344e-48
-## 35        44.637495 1.109344e-48
-## 36        48.343591 1.109344e-48
-## 37        44.117071 1.109344e-48
-## 38        48.484059 1.109344e-48
-## 39        45.467370 1.109344e-48
-## 40        44.554215 1.109344e-48
-## 41        43.040531 1.109344e-48
-## 42        43.571476 1.109344e-48
-## 43        45.443727 1.109344e-48
-## 44        41.760141 1.109344e-48
-## 45        45.978530 1.109344e-48
-## 46        46.184596 1.109344e-48
-## 47        45.484792 1.109344e-48
-## 48        48.308326 1.109344e-48
-## 49        46.246983 1.109344e-48
-## 50        48.917479 1.109344e-48</code></pre>
+head(loop)</code></pre>
+<pre><code>##   rep_number      p_value
+## 1          1 1.109344e-48
+## 2          2 3.231492e-53
+## 3          3 3.062664e-53
+## 4          4 1.062874e-51
+## 5          5 1.254874e-48
+## 6          6 1.717321e-50</code></pre>
 
 
 
